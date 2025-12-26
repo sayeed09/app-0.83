@@ -1,6 +1,6 @@
 import { Button, Dimensions, StyleSheet, Text, TouchableHighlight, View } from 'react-native';
 
-import analytics from '@react-native-firebase/analytics';
+import crashlytics from '@react-native-firebase/crashlytics';
 import Razorpay from 'react-native-customui';
 
 const source = { uri: 'https://cdn.shopify.com/s/files/1/2393/2199/files/Moringa_-_Antioxidant_a8510dfb-073f-479f-b031-769f50f54710.pdf?v=1742514473' };
@@ -36,12 +36,14 @@ export default function HomeScreen() {
       <Button
         title="Add To Basket"
         onPress={async () =>
-          await analytics().logEvent('add_to_cart', {
-            id: 3745092,
-            item: 'mens grey t-shirt',
-            description: ['round neck', 'long sleeved'],
-            size: 'L',
-          })
+          crashlytics().log('App mounted.')
+
+          // await analytics().logEvent('add_to_cart', {
+          //   id: 3745092,
+          // item: 'mens grey t-shirt',
+          // description: ['round neck', 'long sleeved'],
+          // size: 'L',
+          //     })
         }
       />
       {/* <View style={styles.container}>
