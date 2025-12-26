@@ -1,33 +1,58 @@
-import { StyleSheet, Text, TouchableHighlight } from 'react-native';
+import { Dimensions, StyleSheet, Text, TouchableHighlight, View } from 'react-native';
+import Pdf from 'react-native-pdf';
 
 import Razorpay from 'react-native-customui';
 
+const source = { uri: 'https://cdn.shopify.com/s/files/1/2393/2199/files/Moringa_-_Antioxidant_a8510dfb-073f-479f-b031-769f50f54710.pdf?v=1742514473' };
+
 export default function HomeScreen() {
   return (
-    <TouchableHighlight style={{ marginTop: 200 }} onPress={() => {
-      var options = {
-        description: 'Credits towards consultation',
-        currency: 'INR',
-        key_id: 'rzp_test_1DP5mmOlF5G5ag',
-        amount: '5000', // amount in currency subunits. Defaults to INR. 100 = 100 paise = INR 1.
-        email: 'void@razorpay.com',
-        contact: '9999999123',
-        method: 'netbanking',
-        bank: 'HDFC'
-      }
-      Razorpay.open(options).then((data) => {
-        // handle success
-        alert(`Success: ${data.razorpay_payment_id}`);
-      }).catch((error) => {
-        // handle failure
-        alert(`Error: ${error.code} | ${error.description}`);
-      });
-    }}>
-      <Text>
-        Here
-      </Text>
+    <>
+      <TouchableHighlight style={{ marginTop: 200 }} onPress={() => {
+        var options = {
+          description: 'Credits towards consultation',
+          currency: 'INR',
+          key_id: 'rzp_test_1DP5mmOlF5G5ag',
+          amount: '5000', // amount in currency subunits. Defaults to INR. 100 = 100 paise = INR 1.
+          email: 'void@razorpay.com',
+          contact: '9999999123',
+          method: 'netbanking',
+          bank: 'HDFC'
+        }
+        Razorpay.open(options).then((data) => {
+          // handle success
+          alert(`Success: ${data.razorpay_payment_id}`);
+        }).catch((error) => {
+          // handle failure
+          alert(`Error: ${error.code} | ${error.description}`);
+        });
+      }}>
+        <Text>
+          Here
+        </Text>
 
-    </TouchableHighlight>
+      </TouchableHighlight>
+
+      <View style={styles.container}>
+        <Pdf
+          trustAllCerts={false}
+          source={source}
+          onLoadComplete={(numberOfPages, filePath) => {
+            console.log(`Number of pages: ${numberOfPages}`);
+          }}
+          onPageChanged={(page, numberOfPages) => {
+            console.log(`Current page: ${page}`);
+          }}
+          onError={(error) => {
+            console.log(error);
+          }}
+          onPressLink={(uri) => {
+            console.log(`Link pressed: ${uri}`);
+          }}
+          style={styles.pdf} />
+      </View>
+    </>
+
 
   );
 }
@@ -49,4 +74,15 @@ const styles = StyleSheet.create({
     left: 0,
     position: 'absolute',
   },
+  container: {
+    flex: 1,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    marginTop: 25,
+  },
+  pdf: {
+    flex: 1,
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
+  }
 });
