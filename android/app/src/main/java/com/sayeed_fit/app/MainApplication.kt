@@ -1,4 +1,4 @@
-package com.sayeed_fit.app
+package com.oziva_app
 
 import android.app.Application
 import android.content.res.Configuration

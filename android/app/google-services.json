@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "330129262031",
+    "firebase_url": "https://pwaapp-32757.firebaseio.com",
+    "project_id": "pwaapp-32757",
+    "storage_bucket": "pwaapp-32757.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:330129262031:android:38be96f74f4211b17a3eba",
+        "android_client_info": {
+          "package_name": "com.oziva_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "330129262031-rjcq7f25tlds12r68tvfed2u205i3huv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGjypIlFukuOu4J7bBvJuBADk-So3LeoY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "330129262031-rjcq7f25tlds12r68tvfed2u205i3huv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

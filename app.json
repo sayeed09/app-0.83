@@ -21,13 +21,24 @@
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
-      "package": "com.sayeed_fit.app"
+      "package": "com.oziva_app"
     },
     "web": {
       "output": "static",
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "useFrameworks": "static",
+            "forceStaticLinking": [
+              "RNFBApp"
+            ]
+          }
+        }
+      ],
       "expo-router",
       [
         "expo-splash-screen",

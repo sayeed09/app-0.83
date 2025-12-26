@@ -1,13 +1,13 @@
-import { Dimensions, StyleSheet, Text, TouchableHighlight, View } from 'react-native';
-import Pdf from 'react-native-pdf';
+import { Button, Dimensions, StyleSheet, Text, TouchableHighlight, View } from 'react-native';
 
+import analytics from '@react-native-firebase/analytics';
 import Razorpay from 'react-native-customui';
 
 const source = { uri: 'https://cdn.shopify.com/s/files/1/2393/2199/files/Moringa_-_Antioxidant_a8510dfb-073f-479f-b031-769f50f54710.pdf?v=1742514473' };
 
 export default function HomeScreen() {
   return (
-    <>
+    <View style={{ marginTop: 100 }}>
       <TouchableHighlight style={{ marginTop: 200 }} onPress={() => {
         var options = {
           description: 'Credits towards consultation',
@@ -33,7 +33,18 @@ export default function HomeScreen() {
 
       </TouchableHighlight>
 
-      <View style={styles.container}>
+      <Button
+        title="Add To Basket"
+        onPress={async () =>
+          await analytics().logEvent('add_to_cart', {
+            id: 3745092,
+            item: 'mens grey t-shirt',
+            description: ['round neck', 'long sleeved'],
+            size: 'L',
+          })
+        }
+      />
+      {/* <View style={styles.container}>
         <Pdf
           trustAllCerts={false}
           source={source}
@@ -50,8 +61,8 @@ export default function HomeScreen() {
             console.log(`Link pressed: ${uri}`);
           }}
           style={styles.pdf} />
-      </View>
-    </>
+      </View> */}
+    </View>
 
 
   );

@@ -28,7 +28,7 @@
         <key>CFBundleURLSchemes</key>
         <array>
           <string>app</string>
-          <string>com.oziva_app</string>
+          <string>com.fitcircle.oziva</string>
         </array>
       </dict>
     </array>
