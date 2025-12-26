@@ -10,7 +10,7 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.sayeed-fit.app"
+      "bundleIdentifier": "com.oziva_app"
     },
     "android": {
       "adaptiveIcon": {
