@@ -206,9 +206,9 @@ PODS:
   - PromisesObjC (2.4.0)
   - PromisesSwift (2.4.0):
     - PromisesObjC (= 2.4.0)
-  - razorpay-core-pod (1.0.0)
-  - razorpay-customui-pod (2.1.0):
-    - razorpay-core-pod
+  - razorpay-core-pod (1.0.4)
+  - razorpay-customui-pod (2.1.2):
+    - razorpay-core-pod (~> 1.0.4)
   - RCTDeprecation (0.81.5)
   - RCTRequired (0.81.5)
   - RCTTypeSafety (0.81.5):
@@ -1513,6 +1513,8 @@ PODS:
   - react-native-customui (2.2.7):
     - razorpay-customui-pod
     - React
+  - react-native-otp-verify (1.1.8):
+    - React-Core
   - react-native-pdf (7.0.3):
     - hermes-engine
     - RCTRequired
@@ -2181,9 +2183,9 @@ PODS:
     - ReactCommon/turbomodule/core
     - ReactNativeDependencies
     - Yoga
-  - SDWebImage (5.21.3):
-    - SDWebImage/Core (= 5.21.3)
-  - SDWebImage/Core (5.21.3)
+  - SDWebImage (5.21.5):
+    - SDWebImage/Core (= 5.21.5)
+  - SDWebImage/Core (5.21.5)
   - SDWebImageAVIFCoder (0.11.1):
     - libavif/core (>= 0.11.0)
     - SDWebImage (~> 5.10)
@@ -2248,6 +2250,7 @@ DEPENDENCIES:
   - React-microtasksnativemodule (from `../node_modules/react-native/ReactCommon/react/nativemodule/microtasks`)
   - react-native-blob-util (from `../node_modules/react-native-blob-util`)
   - react-native-customui (from `../node_modules/react-native-customui`)
+  - react-native-otp-verify (from `../node_modules/react-native-otp-verify`)
   - react-native-pdf (from `../node_modules/react-native-pdf`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - React-NativeModulesApple (from `../node_modules/react-native/ReactCommon/react/nativemodule/core/platform/ios`)
@@ -2423,6 +2426,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-blob-util"
   react-native-customui:
     :path: "../node_modules/react-native-customui"
+  react-native-otp-verify:
+    :path: "../node_modules/react-native-otp-verify"
   react-native-pdf:
     :path: "../node_modules/react-native-pdf"
   react-native-safe-area-context:
@@ -2542,8 +2547,8 @@ SPEC CHECKSUMS:
   nanopb: fad817b59e0457d11a5dfbde799381cd727c1275
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
   PromisesSwift: 9d77319bbe72ebf6d872900551f7eeba9bce2851
-  razorpay-core-pod: 677b8f8bf7bb5147baf2875163e4543a6230a864
-  razorpay-customui-pod: 7f0eadb0b2a20cc74061e98028b2732c2c772d9f
+  razorpay-core-pod: a5ee92704a114e9468436dcba9d9b6222f6d9899
+  razorpay-customui-pod: 7c6bf63372f68b5f4f21f5b63870a93a55ab3302
   RCTDeprecation: 943572d4be82d480a48f4884f670135ae30bf990
   RCTRequired: 8f3cfc90cc25cf6e420ddb3e7caaaabc57df6043
   RCTTypeSafety: 16a4144ca3f959583ab019b57d5633df10b5e97c
@@ -2579,6 +2584,7 @@ SPEC CHECKSUMS:
   React-microtasksnativemodule: d77e0c426fce34c23227394c96ca1033b30c813c
   react-native-blob-util: b411e63b5633c8df9b1c8341d5b217df8630184c
   react-native-customui: 7b3fc471f4759bd5cf45ab0b1dbb04bc3cbcbc8e
+  react-native-otp-verify: b524a7f44b691644bea08376d6a4782a2df57e09
   react-native-pdf: fe32fa3546728fe8621cd524429c6176c9d8a592
   react-native-safe-area-context: 53f796cb6c814661bbe99fbdfd0585d07b996cdd
   React-NativeModulesApple: 1664340b8750d64e0ef3907c5e53d9481f74bcbd
@@ -2619,7 +2625,7 @@ SPEC CHECKSUMS:
   RNReanimated: 43f611f1c85c90e0273df7399bf1536f8e2bd125
   RNScreens: dd61bc3a3e6f6901ad833efa411917d44827cf51
   RNWorklets: 28ee7370ca8da356fcc914e3e68b97e9752196d2
-  SDWebImage: 16309af6d214ba3f77a7c6f6fdda888cb313a50a
+  SDWebImage: e9c98383c7572d713c1a0d7dd2783b10599b9838
   SDWebImageAVIFCoder: afe194a084e851f70228e4be35ef651df0fc5c57
   SDWebImageSVGCoder: 15a300a97ec1c8ac958f009c02220ac0402e936c
   SDWebImageWebPCoder: e38c0a70396191361d60c092933e22c20d5b1380
