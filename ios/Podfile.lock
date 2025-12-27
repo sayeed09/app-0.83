@@ -1964,6 +1964,8 @@ PODS:
     - React-utils (= 0.81.5)
     - ReactNativeDependencies
   - ReactNativeDependencies (0.81.5)
+  - ReactNativeExceptionHandler (2.10.10):
+    - React-Core
   - RNCAsyncStorage (1.24.0):
     - hermes-engine
     - RCTRequired
@@ -2433,6 +2435,7 @@ DEPENDENCIES:
   - ReactCodegen (from `build/generated/ios`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - ReactNativeDependencies (from `../node_modules/react-native/third-party-podspecs/ReactNativeDependencies.podspec`)
+  - ReactNativeExceptionHandler (from `../node_modules/react-native-exception-handler`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
   - "RNCClipboard (from `../node_modules/@react-native-clipboard/clipboard`)"
   - "RNCMaskedView (from `../node_modules/@react-native-masked-view/masked-view`)"
@@ -2658,6 +2661,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon"
   ReactNativeDependencies:
     :podspec: "../node_modules/react-native/third-party-podspecs/ReactNativeDependencies.podspec"
+  ReactNativeExceptionHandler:
+    :path: "../node_modules/react-native-exception-handler"
   RNCAsyncStorage:
     :path: "../node_modules/@react-native-async-storage/async-storage"
   RNCClipboard:
@@ -2800,6 +2805,7 @@ SPEC CHECKSUMS:
   ReactCodegen: 4c44b74b77fc41ae25b9e2c7e9bd6e2bc772c23f
   ReactCommon: e6e232202a447d353e5531f2be82f50f47cbaa9a
   ReactNativeDependencies: 71ce9c28beb282aa720ea7b46980fff9669f428a
+  ReactNativeExceptionHandler: b11ff67c78802b2f62eed0e10e75cb1ef7947c60
   RNCAsyncStorage: a170e342e83aa0180ec314f7212798dc04f529cc
   RNCClipboard: 398455e1ad6a44a94d679452b951ffb788e8599b
   RNCMaskedView: 3c9d7586e2b9bbab573591dcb823918bc4668005
