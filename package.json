@@ -11,7 +11,14 @@
     "lint": "expo lint"
   },
   "dependencies": {
+    "@emotion/core": "^11.0.0",
+    "@emotion/native": "^11.11.0",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
     "@expo/vector-icons": "^15.0.3",
+    "@fortawesome/fontawesome-svg-core": "^6.7.2",
+    "@fortawesome/free-solid-svg-icons": "^7.1.0",
+    "@fortawesome/react-native-fontawesome": "^0.3.2",
     "@react-native-firebase/analytics": "^23.7.0",
     "@react-native-firebase/app": "^23.7.0",
     "@react-native-firebase/crashlytics": "^23.7.0",
