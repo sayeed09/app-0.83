@@ -22,6 +22,30 @@
     <string>1.0.0</string>
     <key>CFBundleSignature</key>
     <string>????</string>
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+      <string>itms-apps</string>
+        <string>oziva</string>
+      <string>tez</string> 
+      <string>phonepe</string> 
+      <string>paytmmp</string> 
+      <!-- Facebook -->
+      <string>fb</string>
+      <string>fbapi</string>
+      <string>fbauth2</string>
+      <string>fb-messenger-share-api</string>
+
+      <!-- Instagram -->
+      <string>instagram</string>
+
+      <!-- Twitter -->
+      <string>twitter</string>
+      <string>twitterauth</string>
+
+      <!-- YouTube -->
+      <string>youtube</string>
+      <string>vnd.youtube</string>
+    </array>
     <key>CFBundleURLTypes</key>
     <array>
       <dict>

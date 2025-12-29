@@ -1515,6 +1515,8 @@ PODS:
   - react-native-customui (2.2.7):
     - razorpay-customui-pod
     - React
+  - react-native-in-app-review (4.4.2):
+    - React-Core
   - react-native-netinfo (11.4.1):
     - React-Core
   - react-native-otp-verify (1.1.8):
@@ -2442,6 +2444,7 @@ DEPENDENCIES:
   - React-microtasksnativemodule (from `../node_modules/react-native/ReactCommon/react/nativemodule/microtasks`)
   - react-native-blob-util (from `../node_modules/react-native-blob-util`)
   - react-native-customui (from `../node_modules/react-native-customui`)
+  - react-native-in-app-review (from `../node_modules/react-native-in-app-review`)
   - "react-native-netinfo (from `../node_modules/@react-native-community/netinfo`)"
   - react-native-otp-verify (from `../node_modules/react-native-otp-verify`)
   - react-native-pdf (from `../node_modules/react-native-pdf`)
@@ -2633,6 +2636,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-blob-util"
   react-native-customui:
     :path: "../node_modules/react-native-customui"
+  react-native-in-app-review:
+    :path: "../node_modules/react-native-in-app-review"
   react-native-netinfo:
     :path: "../node_modules/@react-native-community/netinfo"
   react-native-otp-verify:
@@ -2818,6 +2823,7 @@ SPEC CHECKSUMS:
   React-microtasksnativemodule: d77e0c426fce34c23227394c96ca1033b30c813c
   react-native-blob-util: b411e63b5633c8df9b1c8341d5b217df8630184c
   react-native-customui: 7b3fc471f4759bd5cf45ab0b1dbb04bc3cbcbc8e
+  react-native-in-app-review: bb863fb300f2c716479c4285201df746cf5e20a2
   react-native-netinfo: f0a9899081c185db1de5bb2fdc1c88c202a059ac
   react-native-otp-verify: b524a7f44b691644bea08376d6a4782a2df57e09
   react-native-pdf: fe32fa3546728fe8621cd524429c6176c9d8a592
