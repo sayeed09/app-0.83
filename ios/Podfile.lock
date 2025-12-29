@@ -1614,6 +1614,28 @@ PODS:
     - Yoga
   - react-native-tracking-transparency (0.1.2):
     - React
+  - react-native-webview (13.16.0):
+    - hermes-engine
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-Core-prebuilt
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-ImageManager
+    - React-jsi
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-renderercss
+    - React-rendererdebug
+    - React-utils
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - ReactNativeDependencies
+    - Yoga
   - React-NativeModulesApple (0.81.5):
     - hermes-engine
     - React-callinvoker
@@ -2259,6 +2281,28 @@ PODS:
     - ReactCommon/turbomodule/core
     - ReactNativeDependencies
     - Yoga
+  - RNVectorIcons (10.3.0):
+    - hermes-engine
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-Core-prebuilt
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-ImageManager
+    - React-jsi
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-renderercss
+    - React-rendererdebug
+    - React-utils
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - ReactNativeDependencies
+    - Yoga
   - RNWorklets (0.5.1):
     - hermes-engine
     - RCTRequired
@@ -2404,6 +2448,7 @@ DEPENDENCIES:
   - react-native-render-html (from `../node_modules/react-native-render-html`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - react-native-tracking-transparency (from `../node_modules/react-native-tracking-transparency`)
+  - react-native-webview (from `../node_modules/react-native-webview`)
   - React-NativeModulesApple (from `../node_modules/react-native/ReactCommon/react/nativemodule/core/platform/ios`)
   - React-oscompat (from `../node_modules/react-native/ReactCommon/oscompat`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
@@ -2449,6 +2494,7 @@ DEPENDENCIES:
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNSnackbar (from `../node_modules/react-native-snackbar`)
   - RNSVG (from `../node_modules/react-native-svg`)
+  - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - RNWorklets (from `../node_modules/react-native-worklets`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
@@ -2599,6 +2645,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-safe-area-context"
   react-native-tracking-transparency:
     :path: "../node_modules/react-native-tracking-transparency"
+  react-native-webview:
+    :path: "../node_modules/react-native-webview"
   React-NativeModulesApple:
     :path: "../node_modules/react-native/ReactCommon/react/nativemodule/core/platform/ios"
   React-oscompat:
@@ -2689,6 +2737,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-snackbar"
   RNSVG:
     :path: "../node_modules/react-native-svg"
+  RNVectorIcons:
+    :path: "../node_modules/react-native-vector-icons"
   RNWorklets:
     :path: "../node_modules/react-native-worklets"
   Yoga:
@@ -2774,6 +2824,7 @@ SPEC CHECKSUMS:
   react-native-render-html: 984dfe2294163d04bf5fe25d7c9f122e60e05ebe
   react-native-safe-area-context: 53f796cb6c814661bbe99fbdfd0585d07b996cdd
   react-native-tracking-transparency: 25ff1ff866e338c137c818bdec20526bb05ffcc1
+  react-native-webview: a0107c12442bf2ac454d509f615daef00f34df47
   React-NativeModulesApple: 1664340b8750d64e0ef3907c5e53d9481f74bcbd
   React-oscompat: ce47230ed20185e91de62d8c6d139ae61763d09c
   React-perflogger: b1af3cfb3f095f819b2814910000392a8e17ba9f
@@ -2819,6 +2870,7 @@ SPEC CHECKSUMS:
   RNScreens: dd61bc3a3e6f6901ad833efa411917d44827cf51
   RNSnackbar: b0914bd060cdb82862dc1a987be57a8b918610bf
   RNSVG: 9b09b63d6487d6aca57755e4b11d197f5870e7dc
+  RNVectorIcons: af977c18ed27deba54ed038b439fca2911a08cfc
   RNWorklets: 28ee7370ca8da356fcc914e3e68b97e9752196d2
   SDWebImage: e9c98383c7572d713c1a0d7dd2783b10599b9838
   SDWebImageAVIFCoder: afe194a084e851f70228e4be35ef651df0fc5c57
