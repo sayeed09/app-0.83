@@ -36,9 +36,6 @@ PODS:
     - ExpoModulesCore
   - ExpoHaptics (15.0.8):
     - ExpoModulesCore
-  - ExpoHead (6.0.21):
-    - ExpoModulesCore
-    - RNScreens
   - ExpoImage (3.0.11):
     - ExpoModulesCore
     - libavif/libdav1d
@@ -2466,7 +2463,6 @@ DEPENDENCIES:
   - ExpoFileSystem (from `../node_modules/expo-file-system/ios`)
   - ExpoFont (from `../node_modules/expo-font/ios`)
   - ExpoHaptics (from `../node_modules/expo-haptics/ios`)
-  - ExpoHead (from `../node_modules/expo-router/ios`)
   - ExpoImage (from `../node_modules/expo-image/ios`)
   - ExpoKeepAwake (from `../node_modules/expo-keep-awake/ios`)
   - ExpoLinking (from `../node_modules/expo-linking/ios`)
@@ -2624,8 +2620,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/expo-font/ios"
   ExpoHaptics:
     :path: "../node_modules/expo-haptics/ios"
-  ExpoHead:
-    :path: "../node_modules/expo-router/ios"
   ExpoImage:
     :path: "../node_modules/expo-image/ios"
   ExpoKeepAwake:
@@ -2840,7 +2834,6 @@ SPEC CHECKSUMS:
   ExpoFileSystem: aefcd337b94b874f88752ebefc52813b84992fad
   ExpoFont: 26bbea90749b8dd0b69effc9fab54248e684f290
   ExpoHaptics: 7240781406f4563c3f4eb1e72864302a8c643fd0
-  ExpoHead: ae2be3269d8f55b0a8df5324b429d9fb552927dc
   ExpoImage: f6bcd30bb98d4c484869668fbc32834bb3ee5bfb
   ExpoKeepAwake: 44bf6715bc1d2ddb17afe19d927cd039cda123f0
   ExpoLinking: ebf543fd411d56375cb4eee07f6ab4e31c7ad959
