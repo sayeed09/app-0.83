@@ -66,6 +66,7 @@
     "react-native-linear-gradient": "^2.8.3",
     "react-native-modal": "^14.0.0-rc.1",
     "react-native-modal-datetime-picker": "^18.0.0",
+    "react-native-moengage": "^12.4.0",
     "react-native-otp-verify": "^1.1.8",
     "react-native-paper": "^5.14.5",
     "react-native-pdf": "^7.0.3",
@@ -97,6 +98,11 @@
     "eslint": "^9.25.0",
     "eslint-config-expo": "~10.0.0",
     "typescript": "~5.9.2"
+  },
+  "moengage": {
+    "includeAndroidXRequiredLibraries": true,
+    "richNotification": true,
+    "_comment1": "Required for Push Templates"
   },
   "private": true
 }

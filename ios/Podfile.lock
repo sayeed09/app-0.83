@@ -200,6 +200,50 @@ PODS:
   - libwebp/sharpyuv (1.5.0)
   - libwebp/webp (1.5.0):
     - libwebp/sharpyuv
+  - MoEngage-iOS-SDK (10.08.0):
+    - MoEngage-iOS-SDK/KMMedCore (= 10.08.0)
+  - MoEngage-iOS-SDK/Core (10.08.0):
+    - MoEngageCampaignsCore (= 1.01.0)
+    - MoEngageCore (= 10.06.0)
+    - MoEngageMessaging (= 5.01.9)
+    - MoEngageSDK (= 10.01.1)
+    - MoEngageSecurity (= 2.00.1)
+  - MoEngage-iOS-SDK/InApps (10.08.0):
+    - MoEngage-iOS-SDK/Core
+    - MoEngageInApps (= 7.03.3)
+    - MoEngageTriggerEvaluator (= 2.00.2)
+  - MoEngage-iOS-SDK/KMMedCore (10.08.0):
+    - MoEngage-iOS-SDK/Core
+    - MoEngageKMMConditionEvaluator (= 1.0.0)
+  - MoEngage-iOS-SDK/RichNotification (10.08.0):
+    - MoEngage-iOS-SDK/Core
+    - MoEngageRichNotification (= 8.01.3)
+  - MoEngageCampaignsCore (1.01.0):
+    - MoEngageCore
+  - MoEngageCore (10.06.0):
+    - MoEngageSecurity
+  - MoEngageInApps (7.03.3):
+    - MoEngageCampaignsCore
+    - MoEngageCore
+    - MoEngageMessaging
+    - MoEngageTriggerEvaluator
+  - MoEngageKMMConditionEvaluator (1.0.0)
+  - MoEngageMessaging (5.01.9):
+    - MoEngageCampaignsCore
+    - MoEngageCore
+  - MoEngagePluginBase (6.7.0):
+    - MoEngage-iOS-SDK (= 10.08.0)
+    - MoEngage-iOS-SDK/InApps
+  - MoEngageRichNotification (8.01.3):
+    - MoEngageCampaignsCore
+    - MoEngageCore
+    - MoEngageMessaging
+  - MoEngageSDK (10.01.1):
+    - MoEngageCore
+    - MoEngageMessaging
+  - MoEngageSecurity (2.00.1)
+  - MoEngageTriggerEvaluator (2.00.2):
+    - MoEngageCore
   - nanopb (3.30910.0):
     - nanopb/decode (= 3.30910.0)
     - nanopb/encode (= 3.30910.0)
@@ -1990,6 +2034,31 @@ PODS:
   - ReactNativeDependencies (0.81.5)
   - ReactNativeExceptionHandler (2.10.10):
     - React-Core
+  - ReactNativeMoEngage (12.4.0):
+    - hermes-engine
+    - MoEngage-iOS-SDK/RichNotification
+    - MoEngagePluginBase (= 6.7.0)
+    - RCTRequired
+    - RCTTypeSafety
+    - React
+    - React-Core
+    - React-Core-prebuilt
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-ImageManager
+    - React-jsi
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-renderercss
+    - React-rendererdebug
+    - React-utils
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - ReactNativeDependencies
+    - Yoga
   - RNCAsyncStorage (1.24.0):
     - hermes-engine
     - RCTRequired
@@ -2484,6 +2553,7 @@ DEPENDENCIES:
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - ReactNativeDependencies (from `../node_modules/react-native/third-party-podspecs/ReactNativeDependencies.podspec`)
   - ReactNativeExceptionHandler (from `../node_modules/react-native-exception-handler`)
+  - ReactNativeMoEngage (from `../node_modules/react-native-moengage`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
   - "RNCClipboard (from `../node_modules/@react-native-clipboard/clipboard`)"
   - "RNCMaskedView (from `../node_modules/@react-native-masked-view/masked-view`)"
@@ -2518,6 +2588,17 @@ SPEC REPOS:
     - libavif
     - libdav1d
     - libwebp
+    - MoEngage-iOS-SDK
+    - MoEngageCampaignsCore
+    - MoEngageCore
+    - MoEngageInApps
+    - MoEngageKMMConditionEvaluator
+    - MoEngageMessaging
+    - MoEngagePluginBase
+    - MoEngageRichNotification
+    - MoEngageSDK
+    - MoEngageSecurity
+    - MoEngageTriggerEvaluator
     - nanopb
     - PromisesObjC
     - PromisesSwift
@@ -2716,6 +2797,8 @@ EXTERNAL SOURCES:
     :podspec: "../node_modules/react-native/third-party-podspecs/ReactNativeDependencies.podspec"
   ReactNativeExceptionHandler:
     :path: "../node_modules/react-native-exception-handler"
+  ReactNativeMoEngage:
+    :path: "../node_modules/react-native-moengage"
   RNCAsyncStorage:
     :path: "../node_modules/@react-native-async-storage/async-storage"
   RNCClipboard:
@@ -2783,6 +2866,17 @@ SPEC CHECKSUMS:
   libavif: 84bbb62fb232c3018d6f1bab79beea87e35de7b7
   libdav1d: 23581a4d8ec811ff171ed5e2e05cd27bad64c39f
   libwebp: 02b23773aedb6ff1fd38cec7a77b81414c6842a8
+  MoEngage-iOS-SDK: 518349fc81b1a7a18e9c02be083f752ed0b5ac70
+  MoEngageCampaignsCore: 0dc811a9614f8b67072c3216b39fa8e88eb05695
+  MoEngageCore: dc2e32c553535d4088a89ff96d48abc22eb29787
+  MoEngageInApps: 4304596cd11a8c3d9b500856f54a0f2edb62a70e
+  MoEngageKMMConditionEvaluator: 052e7d21773e5e864b311747295f9b076f41e3a0
+  MoEngageMessaging: 2a979741208fb7cf50221b96dbb574a567822113
+  MoEngagePluginBase: cb9e433a1a9f329d30ac21c7d9e0e0ec65c3a260
+  MoEngageRichNotification: 163e737c944c71459d912224a93a4c2c3a9ee99f
+  MoEngageSDK: c5571867d2c909c0dac74af707289fdd55dd7fa3
+  MoEngageSecurity: 1864195fa1e3d7a02ddb75efc8f5d49ab336371d
+  MoEngageTriggerEvaluator: 6089f43560efe2dbe4512468d74f16d72d8c33c5
   nanopb: fad817b59e0457d11a5dfbde799381cd727c1275
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
   PromisesSwift: 9d77319bbe72ebf6d872900551f7eeba9bce2851
@@ -2863,6 +2957,7 @@ SPEC CHECKSUMS:
   ReactCommon: e6e232202a447d353e5531f2be82f50f47cbaa9a
   ReactNativeDependencies: 71ce9c28beb282aa720ea7b46980fff9669f428a
   ReactNativeExceptionHandler: b11ff67c78802b2f62eed0e10e75cb1ef7947c60
+  ReactNativeMoEngage: 44e0d901e4800ab50d1ca83f66c804a360d0bab6
   RNCAsyncStorage: a170e342e83aa0180ec314f7212798dc04f529cc
   RNCClipboard: 398455e1ad6a44a94d679452b951ffb788e8599b
   RNCMaskedView: 3c9d7586e2b9bbab573591dcb823918bc4668005

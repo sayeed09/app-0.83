@@ -1,11 +1,21 @@
 import { Button, Dimensions, StyleSheet, Text, TouchableHighlight, View } from 'react-native';
 
 import crashlytics from '@react-native-firebase/crashlytics';
+import { useEffect } from 'react';
 import Razorpay from 'react-native-customui';
+import ReactMoE from 'react-native-moengage';
 
 const source = { uri: 'https://cdn.shopify.com/s/files/1/2393/2199/files/Moringa_-_Antioxidant_a8510dfb-073f-479f-b031-769f50f54710.pdf?v=1742514473' };
 
 export default function HomeScreen() {
+  useEffect(() => {
+    ReactMoE.initialize("Z4JGV1DYJZ1TC2TYDLCBC93G");
+    ReactMoE.identifyUser('test_oo1');
+    console.log(ReactMoE.getUserIdentities(), 'jjjj')
+    ReactMoE.trackEvent('App Opened', {});
+
+  }, []);
+
   return (
     <View style={{ marginTop: 100 }}>
       <TouchableHighlight style={{ marginTop: 200 }} onPress={() => {

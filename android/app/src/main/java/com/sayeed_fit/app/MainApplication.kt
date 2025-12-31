@@ -12,6 +12,10 @@ import com.facebook.react.ReactHost
 import com.facebook.react.common.ReleaseLevel
 import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint
 import com.facebook.react.defaults.DefaultReactNativeHost
+import com.moengage.core.DataCenter
+import com.moengage.core.MoEngage
+import com.moengage.core.config.NotificationConfig
+import com.moengage.react.MoEInitializer
 
 import expo.modules.ApplicationLifecycleDispatcher
 import expo.modules.ReactNativeHostWrapper
@@ -47,6 +51,9 @@ class MainApplication : Application(), ReactApplication {
     }
     loadReactNative(this)
     ApplicationLifecycleDispatcher.onApplicationCreate(this)
+    val moEngage = MoEngage.Builder(this, "Z4JGV1DYJZ1TC2TYDLCBC93G", DataCenter.DATA_CENTER_1)
+    .configureNotificationMetaData(NotificationConfig(R.drawable.favicon_v1_192px, R.drawable.favicon_v1_192px))
+    MoEInitializer.initializeDefaultInstance(applicationContext, moEngage)
   }
 
   override fun onConfigurationChanged(newConfig: Configuration) {
