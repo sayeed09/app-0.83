@@ -1,22 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import { FlatList, ListRenderItem, View } from 'react-native';
+import Clipboard from '@react-native-clipboard/clipboard';
 import { useTheme } from '@shopify/restyle';
 import { AxiosError } from 'axios';
-import { Box, SafeBottomSpace, Text } from 'components/base/foundation';
+import { Box, SafeBottomSpace } from 'components/base/foundation';
+import PrimaryButton from 'components/elements/button/primary-Button';
 import Loader from 'components/elements/loader/loader';
 import PromoCode from 'components/offers/promo-code';
 import { FullPageErrorFallback } from 'components/shared/error';
-import { Offer } from 'models/offers';
-import { Theme } from 'styles/theme';
-import PrimaryButton from 'components/elements/button/primary-Button';
-import { width } from 'utils/constants';
-import { commonStyles } from 'styles/common';
-import Clipboard from '@react-native-clipboard/clipboard';
-import { cartService } from 'services/cart';
-import { OffersModal } from 'models/shop/cart';
-import { setLoginModal } from 'actions/modals';
 import { useModalsDispatch } from 'context/modals';
-import useLogin from 'hooks/login';
+import { Offer } from 'models/offers';
+import React, { useEffect, useState } from 'react';
+import { FlatList, ListRenderItem, Text, View } from 'react-native';
+import { cartService } from 'services/cart';
+import { commonStyles } from 'styles/common';
+import { Theme } from 'styles/theme';
+import { width } from 'utils/constants';
 
 const keyExtractor = (item: Offer) => item?.id;
 
@@ -172,13 +169,13 @@ const Offers = () => {
             <PromoCode code={item.code} />
             <PrimaryButton
               style={[commonStyles.fs14,
-                {
-                  width: width * 0.5 - 20,
-                  marginRight: 2,
-                  height: 35,
-                  marginTop: 8,
-                  justifyContent: 'center',
-                }
+              {
+                width: width * 0.5 - 20,
+                marginRight: 2,
+                height: 35,
+                marginTop: 8,
+                justifyContent: 'center',
+              }
               ]}
               accentColor="#FF6F00"
               title={`${copiedCoupon === item.code ? 'COPIED!' : 'COPY'}`}

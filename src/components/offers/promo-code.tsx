@@ -1,9 +1,9 @@
-import React from 'react';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useTheme } from '@shopify/restyle';
-import { Box, Text } from 'components/base/foundation';
+import { Box } from 'components/base/foundation';
+import React from 'react';
+import { Pressable, Text } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Theme } from 'styles/theme';
-import { Pressable } from 'react-native';
 
 const styles = {
   icon: { transform: [{ scaleX: -1 }] },

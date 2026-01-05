@@ -139,7 +139,7 @@ const ForceUpdate = () => {
     <>
       <RNModal
         style={{ margin: 8, bottom: 32, position: 'absolute', left: 0, right: 0 }}
-        isVisible={showSoftUpdate || showForceUpdate}
+        // isVisible={showSoftUpdate || showForceUpdate}
         onBackButtonPress={() => { }}>
         <View style={{ backgroundColor: '#fff', borderRadius: 8, overflow: 'hidden' }}>
           <ModalContent />

@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { Keyboard, ListRenderItem, Pressable, ScrollView, TextInput, View } from 'react-native';
 import AppModal from 'components/app-modal';
 import OfferAppliedModal from 'components/cart/offer-applied-modal';
 import OZCashForCart from 'components/cart/oziva-cash-cart';
 import { useCheckoutState } from 'context/checkout';
-import { useModalsDispatch, useModalsState } from 'context/modals';
+import { useModalsState } from 'context/modals';
 import { useNotificationState } from 'context/notifications';
 import useCart from 'hooks/cart';
 import { FetchCartParam } from 'models/cart/fetchcart';
+import React, { useEffect, useState } from 'react';
+import { Keyboard, ListRenderItem, Pressable, ScrollView, Text, TextInput, View } from 'react-native';
 import { trackMoEngageAppEvent } from 'utils/common';
 import { height } from 'utils/constants';
 import {
@@ -15,16 +15,15 @@ import {
   formatCurrencyWithSymbol,
 } from 'utils/currency-utils';
 
-import { Box, Text } from '@components/base/foundation';
+import { Box } from '@components/base/foundation';
 import WhiteCard from '@components/elements/card/white-card';
 import Loader from '@components/elements/loader/loader';
 import { useCartState } from '@context/cart/CartContext';
-import LoginModal from 'components/login/standard/login-modal';
-import { commonStyles } from 'styles/common';
 import crashlytics from '@react-native-firebase/crashlytics';
-import { cartService } from 'services/cart';
+import LoginModal from 'components/login/standard/login-modal';
 import { Offer } from 'models/offers';
 import SvgRenderer from 'react-native-svg-renderer';
+import { commonStyles } from 'styles/common';
 
 const ShopOffersContainer = ({ navigation, route }) => {
   const {
