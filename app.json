@@ -55,6 +55,7 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
-    }
+    },
+    "jsEngine": "jsc"
   }
 }
