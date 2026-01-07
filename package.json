@@ -11,6 +11,7 @@
     "lint": "expo lint"
   },
   "dependencies": {
+    "@d11/react-native-fast-image": "^8.13.0",
     "@emotion/core": "^11.0.0",
     "@emotion/native": "^11.11.0",
     "@emotion/react": "^11.14.0",
@@ -40,7 +41,6 @@
     "expo-constants": "~18.0.12",
     "expo-font": "~14.0.10",
     "expo-haptics": "~15.0.8",
-    "expo-image": "~3.0.11",
     "expo-linking": "~8.0.11",
     "expo-router": "~6.0.21",
     "expo-splash-screen": "~31.0.13",
@@ -56,6 +56,7 @@
     "react-mixin": "^5.0.0",
     "react-native": "0.81.5",
     "react-native-blob-util": "^0.24.6",
+    "react-native-config": "^1.6.1",
     "react-native-customui": "^2.2.7",
     "react-native-device-info": "^15.0.1",
     "react-native-elements": "^3.4.3",
@@ -95,6 +96,7 @@
   },
   "devDependencies": {
     "@types/react": "~19.1.0",
+    "babel-plugin-module-resolver": "^5.0.2",
     "eslint": "^9.25.0",
     "eslint-config-expo": "~10.0.0",
     "typescript": "~5.9.2"

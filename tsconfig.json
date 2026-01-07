@@ -1,17 +1,83 @@
 {
-  "extends": "expo/tsconfig.base",
   "compilerOptions": {
+    "module": "esnext",
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "skipLibCheck": true,
+    "jsx": "react",
+    "lib": [
+      "es6"
+    ],
+    "moduleResolution": "node",
+    "noEmit": true,
     "strict": true,
+    "target": "esnext",
+    "baseUrl": ".",
+    "noImplicitAny": false,
     "paths": {
-      "@/*": [
-        "./*"
+      "constants/*": [
+        "./src/constants/*"
+      ],
+      "*": [
+        "./src/*"
+      ],
+      "@actions/*": [
+        "./src/actions/*"
+      ],
+      "@assets/*": [
+        "./src/assets/*"
+      ],
+      "@components/*": [
+        "./src/components/*"
+      ],
+      "@containers/*": [
+        "./src/containers/*"
+      ],
+      "@context/*": [
+        "./src/context/*"
+      ],
+      "@hooks/*": [
+        "./src/hooks/*"
+      ],
+      "@models/*": [
+        "./src/models/*"
+      ],
+      "@pages/*": [
+        "./src/pages/*"
+      ],
+      "@services/*": [
+        "./src/services/*"
+      ],
+      "@styles/*": [
+        "./src/styles/*"
+      ],
+      "@test/*": [
+        "./src/test/*"
+      ],
+      "@utils/*": [
+        "./src/utils/*"
+      ],
+      "@routes/*": [
+        "./src/routes/*"
+      ],
+      "@reducers/*": [
+        "./src/reducers/*"
       ]
     }
   },
+  "exclude": [
+    "node_modules"
+  ],
   "include": [
+    "jest.config.js",
+    ".eslintrc.js",
     "**/*.ts",
     "**/*.tsx",
+    "**/*.js",
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
-  ]
+  ],
+  "extends": "expo/tsconfig.base"
 }

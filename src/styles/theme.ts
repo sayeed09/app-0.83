@@ -1,0 +1,115 @@
+import { createTheme } from '@shopify/restyle';
+
+const palette = {
+  white: '#ffffff',
+  gray50: '#F9FAFB',
+  gray100: '#F3F4F6',
+  gray200: '#E5E7EB',
+  gray300: '#D1D5DB',
+  gray400: '#9CA3AF',
+  gray500: '#7E7E7E',
+  gray600: '#4B5563',
+  gray700: '#374151',
+  gray800: '#1F2937',
+  gray900: '#111827',
+  apple: '#69B244',
+  supernova: '#FECC0E',
+  ottoman: '#F0FAF0',
+  red500: 'red',
+  lightGreen: '#6BBD58',
+  orange: '#FF6F00',
+  darkGreen: '#006E5A',
+};
+
+const theme = createTheme({
+  colors: {
+    appBg: palette.gray300,
+    disabledBg: palette.gray300,
+    levelOneBg: palette.white,
+    levelOneBorder: palette.gray300,
+    levelTwoBg: palette.ottoman,
+    levelThreeBg: palette.apple,
+    levelTwoBorder: palette.apple,
+    titleText: palette.gray900,
+    bodyText: palette.gray800,
+    disabledText: palette.gray500,
+    hintText: palette.gray500,
+    brandPrimary: palette.apple,
+    brandSecondary: palette.supernova,
+    onBrandPrimary: palette.white,
+    onBrandSecondary: palette.white,
+    infoBg: palette.gray100,
+    errorBg: palette.red500,
+    ctaLightGreen: palette.lightGreen,
+    orange: palette.orange,
+    ctaDarkGreen: palette.darkGreen,
+  },
+  spacing: {
+    1: 4,
+    2: 8,
+    3: 12,
+    4: 16,
+    5: 20,
+    6: 24,
+    8: 32,
+    12: 48,
+    16: 64,
+  },
+  breakpoints: {
+    phone: 0,
+    tablet: 768,
+  },
+  textVariants: {
+    display1: {
+      fontWeight: 'normal' as const,
+      fontSize: 24,
+      lineHeight: 24,
+      fontFamily: 'Roboto-Medium',
+    },
+    heading1: {
+      fontWeight: 'normal' as const,
+      fontSize: 18,
+      lineHeight: 20,
+      fontFamily: 'Roboto-Medium',
+    },
+    heading2: {
+      fontWeight: 'normal' as const,
+      fontSize: 16,
+      lineHeight: 19,
+      fontFamily: 'Roboto-Medium',
+    },
+    heading3: {
+      fontWeight: 'normal' as const,
+      fontSize: 14,
+      lineHeight: 17,
+      fontFamily: 'Roboto-Medium',
+    },
+    heading4: {
+      fontWeight: 'normal' as const,
+      fontSize: 12,
+      lineHeight: 14,
+      fontFamily: 'Roboto-Medium',
+    },
+    body1: {
+      fontWeight: 'normal' as const,
+      fontSize: 14,
+      lineHeight: 17,
+      fontFamily: 'Roboto-Regular',
+    },
+    body2: {
+      fontWeight: 'normal' as const,
+      fontSize: 12,
+      lineHeight: 14,
+      fontFamily: 'Roboto-Regular',
+    },
+    body3: {
+      fontWeight: 'normal' as const,
+      fontSize: 10,
+      lineHeight: 12,
+      fontFamily: 'Roboto-Medium',
+    },
+  },
+});
+
+export type Theme = typeof theme;
+export default theme;
