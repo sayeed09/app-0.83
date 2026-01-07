@@ -1,17 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { Alert, Platform, Pressable, RefreshControl, ScrollView, View } from 'react-native';
-import ReactMoE from 'react-native-moengage';
-import { NativeStackNavigationProp } from 'react-native-screens/native-stack';
-import Toast from 'react-native-toast-message';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { AppStackDefinition } from '@routes/definitions';
 import { useTheme } from '@shopify/restyle';
 import { setAuthenticated, setUser as setUserState } from 'actions/auth';
 import { setDiscountCode } from 'actions/checkout';
 import { useCheckoutDispatch } from 'context/checkout';
 import { useNotificationState } from 'context/notifications';
-import { ChatWootUser, PrimeMemberShipType } from 'models/prime';
+import { ChatWootUser } from 'models/prime';
+import React, { useEffect, useState } from 'react';
+import { Alert, Platform, Pressable, RefreshControl, ScrollView, View } from 'react-native';
+import ReactMoE from 'react-native-moengage';
+import Toast from 'react-native-toast-message';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {
   APP_VERSION,
   chatWootBaseURL,
@@ -35,31 +33,29 @@ import ListItem from '@components/elements/lists/item';
 import Loader from '@components/elements/loader/loader';
 import { useAuthDispatch, useAuthState } from '@context/auth';
 import { useModalsDispatch, useModalsState } from '@context/modals';
+import crashlytics from '@react-native-firebase/crashlytics';
 import { Theme } from '@styles/theme';
 import { trackMoEngageAppEvent } from '@utils/common';
-import Config from 'react-native-config';
-import { commonStyles } from 'styles/common';
-import ProfileIconLined from "assets/images/icons/bottom-navigation/lined/profile-user";
-import PrimeLogoIcon from 'assets/images/icons/profile-icon/prime-logo-small';
-import OzivaCashIcon from 'assets/images/icons/profile-icon/oziva-cash-logo';
-import OffersIcon from 'assets/images/icons/profile-icon/offers-icon';
-import ChatWithExpertIcon from 'assets/images/icons/profile-icon/chat-with-exper-icon';
-import TrackOrderIcon from 'assets/images/icons/profile-icon/track-order-icon';
-import { ICustomAttributes } from 'models/chatwoot';
-import LoginModal from 'components/login/fullscreen/login-modal';
 import BlogLineIconComponent from 'assets/images/icons/bottom-navigation/lined/blog';
-import { UserProfileResponseModel } from 'models/auth';
-import { getUserProfileDataService, userAuthCheckService } from 'services/user';
-import useLogin from 'hooks/login';
+import ProfileIconLined from "assets/images/icons/bottom-navigation/lined/profile-user";
+import ChatWithExpertIcon from 'assets/images/icons/profile-icon/chat-with-exper-icon';
+import OffersIcon from 'assets/images/icons/profile-icon/offers-icon';
+import OzivaCashIcon from 'assets/images/icons/profile-icon/oziva-cash-logo';
+import TrackOrderIcon from 'assets/images/icons/profile-icon/track-order-icon';
 import ChatlineAccessRestriction from 'components/chatwoot/chatline-access-restriction';
-import crashlytics from '@react-native-firebase/crashlytics';
-import OfflineOverlay from 'routes/no-internet';
+import LoginModal from 'components/login/fullscreen/login-modal';
+import useLogin from 'hooks/login';
+import { UserProfileResponseModel } from 'models/auth';
+import { ICustomAttributes } from 'models/chatwoot';
+import Config from 'react-native-config';
+import { getUserProfileDataService, userAuthCheckService } from 'services/user';
+import { commonStyles } from 'styles/common';
 
 const ProfileContainer = ({
   navigation,
   isNetworkAvailable
 }: {
-  navigation: NativeStackNavigationProp<AppStackDefinition>;
+  navigation: any;
   isNetworkAvailable: boolean;
 }) => {
   const modalsDispatch = useModalsDispatch();
@@ -76,7 +72,7 @@ const ProfileContainer = ({
   const [loading, setLoading] = useState(false);
   const [authCheckLoading, setAuthCheckLoading] = useState(false);
   const [loggedInRequired, setLoggedInRequired] = useState(false);
-  
+
   const { user: authUser } = useAuthState();
   const { trackingTransparency } = useNotificationState();
   const { handleLogout } = useLogin();
@@ -98,7 +94,7 @@ const ProfileContainer = ({
       }).catch(error => {
         setLoading(false);
         setLoggedInRequired(true);
-        if(error?.response?.status === 401){
+        if (error?.response?.status === 401) {
           handleLogout();
         }
       })
@@ -144,8 +140,8 @@ const ProfileContainer = ({
 
     return unsubscribe;
   }, [navigation, authUser]);
-  
-  
+
+
   useEffect(() => {
     if (isLoginSuccessful) {
       fetchUserProfile();
@@ -180,10 +176,6 @@ const ProfileContainer = ({
       chatting_from: `user_profile_${Platform.OS}_app`,
     };
 
-    //To make it future proof, once deeplink available for the app;
-    if (false) {
-      customAttributes.campaign_source = 'campaign_source';
-    }
     setUserCustomAttributes(customAttributes);
     setPrimeUserDetails({
       avatar_url: '',
@@ -197,9 +189,9 @@ const ProfileContainer = ({
     return <Loader />;
   }
 
-  if(!isNetworkAvailable){
+  if (!isNetworkAvailable) {
     return <></>
-  }else if (!authUser?.phone) {
+  } else if (!authUser?.phone) {
     return <LoginModal />;
   }
 
@@ -290,7 +282,7 @@ const ProfileContainer = ({
     });
     navigation.navigate('Consult');
   };
-  
+
   const navigateToDetailsCash = () => {
     trackMoEngageAppEvent({
       event: `oziva_cash_page_clicked_app`,

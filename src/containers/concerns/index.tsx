@@ -1,24 +1,24 @@
-import React, { useEffect, useState } from 'react';
-import { Text, View } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
-import { DefaultCollectionByHandleQuery, width } from 'utils/constants';
-import { CollectionService } from 'services/collection';
+import { setSnackbarVisible } from 'actions/shop';
+import SuccessMessageIconComponent from 'assets/images/icons/standard-icons/success-message-tick';
+import CollectionBubbles from 'components/concern-categories/collection-bubbles';
+import ProductList from 'components/concern-categories/product-list';
+import SubCollectionTags from 'components/concern-categories/subcollection-tags';
+import { useShopDispatch, useShopState } from 'context/shop';
+import { useNavigation } from 'expo-router';
+import { snakeCase } from 'lodash';
 import {
   Collection,
   CollectionByHandleResponse,
   CollectionByTypeResponseModel,
 } from 'models/collection';
-import CollectionBubbles from 'components/concern-categories/collection-bubbles';
-import SubCollectionTags from 'components/concern-categories/subcollection-tags';
-import ProductList from 'components/concern-categories/product-list';
+import React, { useEffect, useState } from 'react';
+import { ScrollView, Text, View } from 'react-native';
 import { Snackbar } from 'react-native-paper';
-import { setSnackbarVisible } from 'actions/shop';
-import SuccessMessageIconComponent from 'assets/images/icons/standard-icons/success-message-tick';
-import { useShopState, useShopDispatch } from 'context/shop';
+import { CollectionService } from 'services/collection';
 import { trackMoEngageAppEvent } from 'utils/common';
-import { camelCase, snakeCase } from 'lodash';
+import { DefaultCollectionByHandleQuery, width } from 'utils/constants';
 
-const Concerns = ({ navigation, route }) => {
+const Concerns = ({ route }) => {
   const [selectedCollection, setSelectedCollection] = useState<Collection>();
   const [selectedSubCollection, setSelectedSubCollection] =
     useState<Collection>();
@@ -35,6 +35,7 @@ const Concerns = ({ navigation, route }) => {
   const shopDispatch = useShopDispatch();
   const collectionHandleByNavigation = route?.params?.collectionHandle;
   const subCollectionHandleByNavigation = route?.params?.subCollectionHandle;
+  const navigation = useNavigation();
 
   useEffect(() => {
     fetchCollectionByType();

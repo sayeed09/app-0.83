@@ -8,8 +8,8 @@ import { Linking, Platform, Text, View } from 'react-native';
 import DeviceInfo from 'react-native-device-info';
 import RNModal from 'react-native-modal';
 import SpInAppUpdates, {
-    IAUUpdateKind,
-    StartUpdateOptions,
+  IAUUpdateKind,
+  StartUpdateOptions,
 } from 'sp-react-native-in-app-updates';
 import { commonStyles } from 'styles/common';
 import { compareAppVersions } from 'utils/common';
@@ -139,7 +139,7 @@ const ForceUpdate = () => {
     <>
         <RNModal
           style={{margin: 8, bottom: 32, position: 'absolute', left: 0, right: 0}}
-          isVisible={showSoftUpdate || showForceUpdate}
+          // isVisible={showSoftUpdate || showForceUpdate}
           onBackButtonPress={() => { }}>
           <View style={{ backgroundColor: '#ffffff', borderRadius: 8 , overflow: 'hidden' }}>
             <ModalContent />

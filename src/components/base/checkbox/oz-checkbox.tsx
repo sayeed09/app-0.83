@@ -1,8 +1,5 @@
 import React from 'react';
-import { Pressable, StyleProp } from 'react-native';
-import { TextProps } from 'react-native-elements';
-
-import { Text } from '../foundation';
+import { Pressable, Text } from 'react-native';
 import { BaseView } from '../view';
 import { CheckBoxAction, CheckBoxCheck } from './styled';
 

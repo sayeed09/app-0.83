@@ -1,23 +1,23 @@
-import React, { useEffect, useState } from 'react';
-import { SafeAreaView, Text, View } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
-import { DefaultCollectionByHandleQuery, width } from 'utils/constants';
-import { CollectionService } from 'services/collection';
+import { setSnackbarVisible } from 'actions/shop';
+import SuccessMessageIconComponent from 'assets/images/icons/standard-icons/success-message-tick';
+import CollectionBubbles from 'components/concern-categories/collection-bubbles';
+import ProductList from 'components/concern-categories/product-list';
+import { useShopDispatch, useShopState } from 'context/shop';
+import { useNavigation } from 'expo-router';
+import { snakeCase } from 'lodash';
 import {
   Collection,
   CollectionByHandleResponse,
   CollectionByTypeResponseModel,
 } from 'models/collection';
-import CollectionBubbles from 'components/concern-categories/collection-bubbles';
-import ProductList from 'components/concern-categories/product-list';
+import React, { useEffect, useState } from 'react';
+import { SafeAreaView, Text, View } from 'react-native';
 import { Snackbar } from 'react-native-paper';
-import { setSnackbarVisible } from 'actions/shop';
-import SuccessMessageIconComponent from 'assets/images/icons/standard-icons/success-message-tick';
-import { useShopState, useShopDispatch } from 'context/shop';
-import { snakeCase } from 'lodash';
+import { CollectionService } from 'services/collection';
 import { trackMoEngageAppEvent } from 'utils/common';
+import { DefaultCollectionByHandleQuery, width } from 'utils/constants';
 
-const Categories = ({ navigation, route }) => {
+const Categories = ({ route }) => {
   const [collectionData, setCollectionData] =
     useState<CollectionByTypeResponseModel>();
   const [selectedCollection, setSelectedCollection] = useState<Collection>();
@@ -27,6 +27,7 @@ const Categories = ({ navigation, route }) => {
   const { snackBarVisible } = useShopState();
   const shopDispatch = useShopDispatch();
   const collectionHandleByNavigation = route?.params?.collectionHandle;
+  const navigation = useNavigation();
 
   useEffect(() => {
     fetchCollectionByType();
