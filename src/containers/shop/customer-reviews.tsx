@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 import React, { memo, useCallback, useEffect, useState } from 'react';
-import { Alert, FlatList, Keyboard, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Alert, FlatList, Keyboard, Pressable, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import * as Progress from 'react-native-progress';
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -16,18 +16,17 @@ import { RatingWrapper, SmallText } from '@components/styled/common';
 import { darkGreen, grayb3, green } from '@components/styles/colors';
 import { commonStyles } from '@styles/common';
 import {
-    customerReviewsCustom,
-    judgeMeAPIToken,
-    ozivaShopifyDomain,
-    // reviewSortKeys,
-    width,
+  customerReviewsCustom,
+  judgeMeAPIToken,
+  ozivaShopifyDomain,
+  // reviewSortKeys,
+  width,
 } from '@utils/constants';
 
 import { setLoginModal } from 'actions/modals';
 import LoginModal from 'components/login/standard/login-modal';
 import { useModalsDispatch, useModalsState } from 'context/modals';
 import { Product } from 'models/product';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import { StarRatingDisplay } from 'react-native-star-rating-widget';
 import { getUser } from 'services/auth';
 import { CustomText } from '../../../AndroidFontFix';

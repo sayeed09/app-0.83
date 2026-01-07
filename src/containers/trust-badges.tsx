@@ -1,6 +1,6 @@
+import FastImage from "@d11/react-native-fast-image";
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
-import FastImage from "react-native-fast-image";
+import { StyleSheet, Text, View } from "react-native";
 import { trustedByMillions } from "utils/constants";
 
 

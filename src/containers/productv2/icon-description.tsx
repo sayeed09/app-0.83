@@ -1,12 +1,11 @@
-import React, { useState } from "react";
-import { IconDescription as IconDescriptionModel } from "models/product-details/productv2";
-import { Image, Pressable, Text, View } from "react-native";
-import { IconDescriptionStyle } from "styles/productv2";
-import RenderHtml from 'react-native-render-html';
-import { width } from "utils/constants";
+import FastImage from "@d11/react-native-fast-image";
 import Header from "components/productv2/common/header";
-import FastImage from "react-native-fast-image";
-import { color } from "@shopify/restyle";
+import { IconDescription as IconDescriptionModel } from "models/product-details/productv2";
+import React, { useState } from "react";
+import { Image, Pressable, Text, View } from "react-native";
+import RenderHtml from 'react-native-render-html';
+import { IconDescriptionStyle } from "styles/productv2";
+import { width } from "utils/constants";
 
 interface Props {
     sectionHeader: string;

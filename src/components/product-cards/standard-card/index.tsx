@@ -2,6 +2,7 @@ import FastImage from '@d11/react-native-fast-image';
 import { StyledButton } from 'components/base/button/styled';
 import ProductRating from 'components/product-cards/standard-card/product-rating';
 import { ViewWrapper } from 'components/styled/common';
+import { router } from 'expo-router';
 import { ProductCardModel } from 'models/product-card/card-model';
 import React from 'react';
 import { Text, View } from 'react-native';
@@ -27,11 +28,19 @@ const StandardCards = ({
     <StyledButton
       onPress={() => {
         if (onClick) onClick();
-        navigation.navigate('ProductDetails', {
-          queryString: JSON.stringify(productCardModel?.productId),
-          productTitle: productCardModel?.title,
-          variantId: productCardModel?.variantId as string,
+        router.push({
+          pathname: '/ProductDetails',
+          params: {
+            queryString: JSON.stringify(productCardModel?.productId),
+            productTitle: productCardModel?.title,
+            variantId: productCardModel?.variantId,
+          },
         });
+        //  navigation.navigate('ProductDetails', {
+        //   queryString: JSON.stringify(productCardModel?.productId),
+        //   productTitle: productCardModel?.title,
+        //   variantId: productCardModel?.variantId as string,
+        // });
       }}
     >
       <View
@@ -96,7 +105,7 @@ const StandardCards = ({
           />
         </ViewWrapper>
       </View>
-    </StyledButton>
+    </StyledButton >
   );
 };
 

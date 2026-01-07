@@ -1,12 +1,11 @@
-import Article from "components/productv2/articles/article";
+import FastImage from "@d11/react-native-fast-image";
+import AnimatedNumber from "components/productv2/articles/animate-number";
 import ArticleList from "components/productv2/articles/list";
+import Header from "components/productv2/common/header";
 import { Article as ArticleModel, ArticleSection } from "models/product-details/productv2";
 import React, { useEffect, useState } from "react";
 import { Text, TouchableNativeFeedback, View } from "react-native";
 import { ArticlesStyle } from "styles/productv2";
-import Header from "components/productv2/common/header";
-import FastImage from "react-native-fast-image";
-import AnimatedNumber from "components/productv2/articles/animate-number";
 
 interface Props {
     sectionHeader: string;

@@ -4,7 +4,6 @@ import CollectionBubbles from 'components/concern-categories/collection-bubbles'
 import ProductList from 'components/concern-categories/product-list';
 import SubCollectionTags from 'components/concern-categories/subcollection-tags';
 import { useShopDispatch, useShopState } from 'context/shop';
-import { useNavigation } from 'expo-router';
 import { snakeCase } from 'lodash';
 import {
   Collection,
@@ -18,7 +17,7 @@ import { CollectionService } from 'services/collection';
 import { trackMoEngageAppEvent } from 'utils/common';
 import { DefaultCollectionByHandleQuery, width } from 'utils/constants';
 
-const Concerns = ({ route }) => {
+const Concerns = ({ route, navigation }) => {
   const [selectedCollection, setSelectedCollection] = useState<Collection>();
   const [selectedSubCollection, setSelectedSubCollection] =
     useState<Collection>();
@@ -35,7 +34,6 @@ const Concerns = ({ route }) => {
   const shopDispatch = useShopDispatch();
   const collectionHandleByNavigation = route?.params?.collectionHandle;
   const subCollectionHandleByNavigation = route?.params?.subCollectionHandle;
-  const navigation = useNavigation();
 
   useEffect(() => {
     fetchCollectionByType();

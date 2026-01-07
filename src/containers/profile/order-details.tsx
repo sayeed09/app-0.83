@@ -1,3 +1,7 @@
+import { isIdInCart } from '@containers/shop/common';
+import { RouteProp } from '@react-navigation/native';
+import { AppStackDefinition } from '@routes/definitions';
+import { isEmpty } from 'lodash';
 import React, { useEffect, useState } from 'react';
 import {
   Alert as AlertPopup,
@@ -10,10 +14,6 @@ import {
 } from 'react-native';
 import { NativeStackNavigationProp } from 'react-native-screens/native-stack';
 import Toast from 'react-native-toast-message';
-import { isIdInCart } from '@containers/shop/common';
-import { RouteProp } from '@react-navigation/native';
-import { AppStackDefinition } from '@routes/definitions';
-import { isEmpty } from 'lodash';
 
 import AddressCard from '@components/address/address-card';
 import Alert from '@components/base/alert';
@@ -34,18 +34,18 @@ import Loader from '@components/elements/loader/loader';
 import OrderPricing from '@components/orders/pricing';
 import { useCartState } from '@context/cart/CartContext';
 import { CartItem } from '@models/shop/cart';
+import crashlytics from '@react-native-firebase/crashlytics';
 import { width } from '@utils/constants';
 import { formatCurrencyWithSymbol } from '@utils/currency-utils';
-import { OrderService } from 'services/order';
-import { IOrderDetail } from 'models/order/order-response';
-import useCart from 'hooks/cart';
-import { ProductCardModel } from 'models/product-card/card-model';
-import { trackMoEngageAppEvent } from 'utils/common';
-import { cancelOrderService } from 'services/user';
-import { loginSuccessful } from 'actions/modals';
 import { useModalsDispatch } from 'context/modals';
+import { router } from 'expo-router';
+import useCart from 'hooks/cart';
 import useLogin from 'hooks/login';
-import crashlytics from '@react-native-firebase/crashlytics';
+import { IOrderDetail } from 'models/order/order-response';
+import { ProductCardModel } from 'models/product-card/card-model';
+import { OrderService } from 'services/order';
+import { cancelOrderService } from 'services/user';
+import { trackMoEngageAppEvent } from 'utils/common';
 
 const styles = StyleSheet.create({
   overlay: {
@@ -133,7 +133,7 @@ const OrderDetails = ({
       );
       setOrderDetails(ordersResponse.data);
     } catch (error: any) {
-      if(error?.response?.status === 401){
+      if (error?.response?.status === 401) {
         handleLogout();
         navigation.navigate('ProfileScreen');
       }
@@ -157,7 +157,7 @@ const OrderDetails = ({
         position: 'bottom',
       });
       setLoading(false);
-      if(error?.response?.status === 401){
+      if (error?.response?.status === 401) {
         handleLogout();
         navigation.navigate('ProfileScreen');
       }
@@ -198,7 +198,7 @@ const OrderDetails = ({
         flex: 1,
       }}
     >
-      <ScrollView style={{marginBottom: 16}}>
+      <ScrollView style={{ marginBottom: 16 }}>
         <Box backgroundColor="levelOneBg" pb={3}>
           <Box px={4} py={3}>
             <ListItem
@@ -234,9 +234,16 @@ const OrderDetails = ({
                 <Pressable
                   onPress={() => {
                     crashlytics().log(`navigating on the product details screen from order details : ${item?.productId}`);
-                    navigation.navigate('ProductDetails', {
-                      queryString: JSON.stringify(item?.productId),
-                      productTitle: item.variantTitle,
+                    // navigation.navigate('ProductDetails', {
+                    //   queryString: JSON.stringify(item?.productId),
+                    //   productTitle: item.variantTitle,
+                    // });
+                    router.push({
+                      pathname: '/ProductDetails',
+                      params: {
+                        queryString: JSON.stringify(item?.productId),
+                        productTitle: item.variantTitle,
+                      },
                     });
                   }}
                 >

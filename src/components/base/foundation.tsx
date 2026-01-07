@@ -1,25 +1,26 @@
 import FastImage, { FastImageProps } from '@d11/react-native-fast-image';
 import {
-    backgroundColor,
-    border,
-    BoxProps,
-    createBox,
-    createText,
-    shadow,
-    spacing,
-    spacingShorthand,
-    useRestyle,
-    useTheme,
+  backgroundColor,
+  border,
+  BoxProps,
+  createBox,
+  shadow,
+  spacing,
+  spacingShorthand,
+  useRestyle,
+  useTheme
 } from '@shopify/restyle';
 import React, { PropsWithChildren } from 'react';
 import {
-    GestureResponderEvent,
-    PressableProps,
-    Image as RNImage,
-    Pressable as RNPressable,
-    ScrollView as RNScrollView,
-    ScrollViewProps,
-    View,
+  GestureResponderEvent,
+  PressableProps,
+  Image as RNImage,
+  Pressable as RNPressable,
+  ScrollView as RNScrollView,
+  Text as RNText,
+  ScrollViewProps,
+  TextProps,
+  View
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Theme } from 'styles/theme';
@@ -33,9 +34,31 @@ const restyleFunctions = [
 ];
 
 export const Box = createBox<Theme>();
-export const Text = createText<Theme>();
-Text.defaultProps = { color: 'bodyText', variant: 'body1' };
 
+type AppTextProps = TextProps & {
+  color?: string;
+  variant?: 'regular' | 'bold';
+};
+
+export const Text: React.FC<AppTextProps> = ({
+  style,
+  color = '#000',
+  variant = 'regular',
+  children,
+  ...props
+}) => {
+  return (
+    <RNText
+      {...props}
+      style={[
+        { color, fontWeight: variant === 'bold' ? '700' : '400' },
+        style,
+      ]}
+    >
+      {children}
+    </RNText>
+  );
+};
 export const Image = ({ source, ...props }: FastImageProps) => {
   const resolvedSource = RNImage.resolveAssetSource(source as any);
   const isExternalImage = resolvedSource?.uri?.startsWith('http') ?? false;

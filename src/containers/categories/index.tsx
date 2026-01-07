@@ -3,7 +3,6 @@ import SuccessMessageIconComponent from 'assets/images/icons/standard-icons/succ
 import CollectionBubbles from 'components/concern-categories/collection-bubbles';
 import ProductList from 'components/concern-categories/product-list';
 import { useShopDispatch, useShopState } from 'context/shop';
-import { useNavigation } from 'expo-router';
 import { snakeCase } from 'lodash';
 import {
   Collection,
@@ -17,7 +16,7 @@ import { CollectionService } from 'services/collection';
 import { trackMoEngageAppEvent } from 'utils/common';
 import { DefaultCollectionByHandleQuery, width } from 'utils/constants';
 
-const Categories = ({ route }) => {
+const Categories = ({ route, navigation }) => {
   const [collectionData, setCollectionData] =
     useState<CollectionByTypeResponseModel>();
   const [selectedCollection, setSelectedCollection] = useState<Collection>();
@@ -27,7 +26,6 @@ const Categories = ({ route }) => {
   const { snackBarVisible } = useShopState();
   const shopDispatch = useShopDispatch();
   const collectionHandleByNavigation = route?.params?.collectionHandle;
-  const navigation = useNavigation();
 
   useEffect(() => {
     fetchCollectionByType();

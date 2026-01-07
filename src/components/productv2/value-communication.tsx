@@ -1,8 +1,8 @@
+import FastImage from "@d11/react-native-fast-image";
 import { useShopState } from "context/shop";
 import { ValueCommItems } from "models/shop";
 import React, { useEffect, useState } from "react";
-import { View, Text, Image, StyleSheet } from "react-native";
-import FastImage from "react-native-fast-image";
+import { Image, StyleSheet, Text, View } from "react-native";
 import { commonStyles } from "styles/common";
 import { RUPEE_SYMBOL } from "utils/constants";
 

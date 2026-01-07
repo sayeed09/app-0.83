@@ -1,6 +1,5 @@
-import React, { useRef, useState, useEffect } from 'react';
-import { Platform, Text, TextInput, View } from 'react-native';
-import { setAuthenticated, setRedirectToCheckout, setShipRocketImportToken, setUser as setUserState } from 'actions/auth';
+import { trackMoEngageAppEvent } from '@utils/common';
+import { setAuthenticated, setShipRocketImportToken, setUser as setUserState } from 'actions/auth';
 import {
   loginSuccessful,
   setLoginModal,
@@ -8,17 +7,17 @@ import {
 } from 'actions/modals';
 import { BaseView } from 'components/base/view';
 import PrimaryButton from 'components/elements/button/primary-Button';
-import { ctaGreen, primaryOrange } from 'components/styles/colors';
+import { ctaGreen } from 'components/styles/colors';
 import { useAuthDispatch, useAuthState } from 'context/auth';
 import { useModalsDispatch } from 'context/modals';
+import { useNotificationState } from 'context/notifications';
 import { useShopState } from 'context/shop';
 import { User } from 'models/user';
+import React, { useEffect, useRef, useState } from 'react';
+import { Platform, Text, TextInput, View } from 'react-native';
+import RNOtpVerify from 'react-native-otp-verify';
 import { setUser } from 'services/auth';
 import { validateOtp } from 'services/login';
-import { width } from 'utils/constants';
-import RNOtpVerify from 'react-native-otp-verify';
-import { trackMoEngageAppEvent } from '@utils/common';
-import { useNotificationState } from 'context/notifications';
 import { commonStyles } from 'styles/common';
 import { otpInputstyles } from 'styles/login';
 
@@ -109,6 +108,7 @@ const OtpVerification = ({ showSuccessMessage, navigation }: IProps) => {
   };
 
   const onSubmitButtonPress = async () => {
+    debugger;
     if (isLoading) return;
     const otp = otpArray.join('');
     const otpRequestPayload = {
@@ -166,6 +166,7 @@ const OtpVerification = ({ showSuccessMessage, navigation }: IProps) => {
   // this event won't be fired when text changes from '' to '' i.e. backspace is pressed
   // using onOtpKeyPress for this purpose
   const onOtpChange = index => value => {
+
     if (!value) return;
 
     // Only digits
@@ -216,7 +217,7 @@ const OtpVerification = ({ showSuccessMessage, navigation }: IProps) => {
       setInvalid(false);
     }
   };
-
+  console.log(otpInputFocusStatus)
   return (
     <View>
       <View
@@ -228,6 +229,7 @@ const OtpVerification = ({ showSuccessMessage, navigation }: IProps) => {
           paddingTop: 16,
         }}
       >
+
         {otpInputRefs.map((otpInputRef, index) => (
           <View
             key={otpInputRef.id}
@@ -241,11 +243,12 @@ const OtpVerification = ({ showSuccessMessage, navigation }: IProps) => {
             ]}
           >
             <TextInput
+              placeholder=' '
               value={otpArray[index]}
               onKeyPress={onOtpKeyPress(index)}
               onChangeText={onOtpChange(index)}
               keyboardType="numeric"
-              // maxLength={1}
+              maxLength={1}
               autoFocus={index === 0 ? true : false}
               style={[otpInputstyles.textInputStyle]}
               ref={otpInputRef.inputRef}

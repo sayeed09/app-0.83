@@ -33,7 +33,6 @@ import { width } from '@utils/constants';
 import { Text } from 'react-native';
 
 import crashlytics from '@react-native-firebase/crashlytics';
-import { useNavigation } from 'expo-router';
 import { filterBannerImagesHomeService } from 'services/home';
 import CategoriesThumbnails from './category-thumbnails';
 import Certificate from './certificate';
@@ -43,9 +42,8 @@ import { inTheNews } from './constants';
 import IconsForFact from './icons-for-facts';
 import InSpotLight from './spotlight';
 
-const HomePage = ({ }) => {
+const HomePage = ({ navigation }) => {
   const cartDispatch = useCartDispatch();
-  const navigation = useNavigation();
   const { cartItems } = useCartState();
   const modalsDispatch = useModalsDispatch();
   const mounted = useRef(false);

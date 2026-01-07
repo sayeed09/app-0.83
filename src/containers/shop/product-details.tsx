@@ -11,23 +11,24 @@ import HeaderRight from 'components/styled/header/header-right';
 import ProductContainer from 'containers/product/product-container';
 import ProductContainerV2 from 'containers/productv2/product-container';
 import { useCartDispatch } from 'context/cart/CartContext';
+import { useLocalSearchParams } from 'expo-router';
 import { Product } from 'models/product';
 import {
-    IImage,
-    IProductResponse,
-    IVariant,
-    VariantAdditionalResponse,
+  IImage,
+  IProductResponse,
+  IVariant,
+  VariantAdditionalResponse,
 } from 'models/product-details/product';
 import { FetchSubscriptionsModel } from 'models/product-details/subscription-plan-response';
 import React, { useEffect, useRef, useState } from 'react';
-import { SafeAreaView, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import {
-    fetchProductById,
-    fetchProducts,
-    fetchVariantAdditionalDetail,
-    fetchVariantSubscriptionDetail,
+  fetchProductById,
+  fetchProducts,
+  fetchVariantAdditionalDetail,
+  fetchVariantSubscriptionDetail,
 } from 'services/product';
 import { height } from 'utils/constants';
 import { capitalize } from 'utils/math';
@@ -54,18 +55,18 @@ const ProductDetails = ({ navigation, route }) => {
   const [dataSourceCords, setDataSourceCords] = useState<number>();
   const cartDispatch = useCartDispatch();
 
-  const [productVariantImages, setProductVariantImages] = useState<IImage[]>();
+  const [productVariantImages, setProductVariantImages] = useState<IImage[]>([]);
+  const {
+    queryString,
+    productTitle,
+    variantId,
+  } = useLocalSearchParams<any>();
+
+  const productId = queryString ? JSON.parse(queryString) : null;
+
 
   let flatListRef: any = useRef();
-  let productId = (
-    route?.params?.productId ||
-    route?.params?.queryString
-  )
-  if (productId) {
-    productId = route?.params?.productId ||
-      route?.params?.queryString.trim()
-        .replace(/^"(.*)"$/, '$1');
-  }
+
 
   useEffect(() => {
     setLoading(true);
@@ -267,9 +268,9 @@ const ProductDetails = ({ navigation, route }) => {
   }
   return (
     <SafeAreaView
+      edges={['bottom']}
       style={{
         flex: 1,
-        marginBottom: insets.bottom
       }}
     >
       <View style={[commonStyles.flex]}>

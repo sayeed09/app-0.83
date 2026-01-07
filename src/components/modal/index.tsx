@@ -1,5 +1,8 @@
+import { BaseView } from 'components/base/view';
+import { grayd9 } from 'components/styles/colors';
 import React, { useEffect, useRef, useState } from 'react';
 import {
+  AppState,
   KeyboardAvoidingView,
   Modal,
   ModalProps,
@@ -7,16 +10,13 @@ import {
   Pressable,
   StyleProp,
   Text,
-  ViewStyle,
-  AppState
+  ViewStyle
 } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { BaseView } from 'components/base/view';
-import { grayd9 } from 'components/styles/colors';
-import { height } from 'utils/constants';
 import { commonStyles } from 'styles/common';
+import { height } from 'utils/constants';
 
 interface Props extends ModalProps {
   keyboardBehaviorProps?: any;
@@ -79,11 +79,11 @@ const OZModal = (props: Props): React.ReactElement => {
         }
       }
     });
-  
-      return () => {
-        subscription.remove();
-      };
-    }, [isVisible, onRequestClose]);
+
+    return () => {
+      subscription.remove();
+    };
+  }, [isVisible, onRequestClose]);
 
   const KeyboardChildren = () => (
     <BaseView
@@ -175,12 +175,12 @@ const OZModal = (props: Props): React.ReactElement => {
             </KeyboardAwareScrollView>
           ) : (
             <KeyboardAvoidingView
-              behavior={keyboardBehavior}
+              behavior={'height'}
               keyboardVerticalOffset={isIos ? 0 : 20}
               style={{
                 flex: 1,
               }}
-              enabled={!!isIos}
+            // enabled={!!isIos}
             >
               <KeyboardChildren />
             </KeyboardAvoidingView>

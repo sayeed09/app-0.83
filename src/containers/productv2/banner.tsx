@@ -1,7 +1,7 @@
+import FastImage from "@d11/react-native-fast-image";
 import Header from "components/productv2/common/header";
 import React, { useEffect, useState } from "react";
 import { Image, StyleSheet, View } from "react-native";
-import FastImage from "react-native-fast-image";
 import { BannerStyle } from "styles/productv2";
 import { width } from "utils/constants";
 import { resizeImageForDevice } from "utils/image-utils";

@@ -13,6 +13,7 @@ import { GATrackingService } from 'utils/ga-tracking';
 
 import ThreeMonthConsult from 'components/cart/three-month-consult';
 import OZModal from 'components/modal';
+import { router } from 'expo-router';
 import useCart from 'hooks/cart';
 import { TouchableOpacity } from 'react-native';
 import { getUpgradedProductId } from 'services/cart';
@@ -54,7 +55,7 @@ const HorizontalCard = ({
 
   const cartDispatch = useCartDispatch();
   const { cartItems, isSubscriptionItem, isCartUpgraded, orderTotal, lineItems } = useCartState();
-  const { trackRemoveItemFromCart, handleUpgradeOnItemRemove } = useCart(); 
+  const { trackRemoveItemFromCart, handleUpgradeOnItemRemove } = useCart();
   const [upgradeCartPopup, setUpgradeCartPopup] = useState(false);
   const [upgradeCartItem, setUpgradeCartItem] = useState<ProductCardModel>();
   const [isUpgraded, setIsUpgraded] = useState(false); //To check if first cart item is already upgraded or not;
@@ -98,11 +99,11 @@ const HorizontalCard = ({
         }
       });
     }
-  }, [lineItems]);  
+  }, [lineItems]);
 
   return (
     <>
-      <View style={[checkForPrime && HorizontalCardT1Style.PrimeProductCard, index === 0 ? { marginTop: marginTop }: { marginTop: 8}]}>
+      <View style={[checkForPrime && HorizontalCardT1Style.PrimeProductCard, index === 0 ? { marginTop: marginTop } : { marginTop: 8 }]}>
         <View style={!checkForPrime ? { borderWidth: 1, paddingVertical: 0, borderRadius: 2, borderColor: '#E0E0E0', marginHorizontal: 4 } : {}}>
           <View
             style={[
@@ -134,10 +135,18 @@ const HorizontalCard = ({
                               );
                               trackRemoveItemFromCart(productCardModel);
                               if (isSubscriptionItem) {
-                                navigation && navigation.navigate('ProductDetails', {
-                                  queryString: JSON.stringify(productCardModel?.productId),
-                                  productTitle: productCardModel?.title,
-                                  variantId: productCardModel?.variantId as string,
+                                // navigation && navigation.navigate('ProductDetails', {
+                                //   queryString: JSON.stringify(productCardModel?.productId),
+                                //   productTitle: productCardModel?.title,
+                                //   variantId: productCardModel?.variantId as string,
+                                // });
+                                router.push({
+                                  pathname: '/ProductDetails',
+                                  params: {
+                                    queryString: JSON.stringify(productCardModel?.productId),
+                                    productTitle: productCardModel?.title,
+                                    variantId: productCardModel?.variantId,
+                                  },
                                 });
                               }
                               handleUpgradeOnItemRemove(productCardModel?.variantId);
@@ -356,7 +365,7 @@ const HorizontalCard = ({
             </ViewWrapper>
           </View>
           {index === 0 && filterVariantsList && filterVariantsList.length > 0 && !isCartUpgraded && !isUpgraded && <UpgradeCart handleUpgradeClick={() => {
-            if(productCardModel){
+            if (productCardModel) {
               handleUpgradeClick(productCardModel);
             }
           }} filteredVariant={filterVariantsList} productId={productCardModel?.productId} />}
@@ -371,7 +380,7 @@ const HorizontalCard = ({
           </View>
         }
       </View>
-      {upgradeCartPopup && 
+      {upgradeCartPopup &&
         <OZModal
           visible={upgradeCartPopup}
           onRequestClose={() => setUpgradeCartPopup(false)}
