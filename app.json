@@ -24,7 +24,7 @@
       "package": "com.oziva_app"
     },
     "web": {
-      "output": "static",
+      "output": "single",
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
