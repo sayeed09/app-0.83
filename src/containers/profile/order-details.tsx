@@ -7,12 +7,10 @@ import {
   Alert as AlertPopup,
   Linking,
   Pressable,
-  SafeAreaView,
   ScrollView,
   StyleSheet,
   View,
 } from 'react-native';
-import { NativeStackNavigationProp } from 'react-native-screens/native-stack';
 import Toast from 'react-native-toast-message';
 
 import AddressCard from '@components/address/address-card';
@@ -43,6 +41,7 @@ import useCart from 'hooks/cart';
 import useLogin from 'hooks/login';
 import { IOrderDetail } from 'models/order/order-response';
 import { ProductCardModel } from 'models/product-card/card-model';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { OrderService } from 'services/order';
 import { cancelOrderService } from 'services/user';
 import { trackMoEngageAppEvent } from 'utils/common';
@@ -67,7 +66,7 @@ const OrderDetails = ({
   navigation,
   route,
 }: {
-  navigation: NativeStackNavigationProp<AppStackDefinition>;
+  navigation: any;
   route: RouteProp<AppStackDefinition, 'OrderDetails'>;
 }) => {
   const { order } = route.params;
