@@ -46,16 +46,26 @@
       <string>youtube</string>
       <string>vnd.youtube</string>
     </array>
-    <key>CFBundleURLTypes</key>
-    <array>
-      <dict>
-        <key>CFBundleURLSchemes</key>
-        <array>
-          <string>app</string>
-          <string>com.fitcircle.oziva</string>
-        </array>
-      </dict>
-    </array>
+   <key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>com.fitcircle.oziva</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb327925112148720</string>
+				<string>oziva</string>
+			</array>
+		</dict>
+	</array>
+	<key>CodePushDeploymentKey</key>
+	<string>FaoEK3uiM9fi9BtfRe5v8k-niQhrlMfMzRm89</string>
+	<key>FacebookAppID</key>
+	<string>327925112148720</string>
+	<key>FacebookClientToken</key>
+	<string>b79608a0b7040eceeea67aa659eb71a3</string>
+	<key>FacebookDisplayName</key>
+	<string>OZiva</string>
     <key>CFBundleVersion</key>
     <string>1</string>
     <key>LSMinimumSystemVersion</key>

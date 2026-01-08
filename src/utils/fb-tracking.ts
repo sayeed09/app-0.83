@@ -1,4 +1,4 @@
-// import { AppEventsLogger } from 'react-native-fbsdk-next';
+import { AppEventsLogger } from 'react-native-fbsdk-next';
 
 import { GAItem } from 'models/ga-tracking';
 const CURRENCY = 'INR';
@@ -12,7 +12,7 @@ const trackAddToCart = ({ item_id, item_name, price, quantity }: GAItem) => {
     value: price,
     currency: CURRENCY,
   };
-  // AppEventsLogger.logEvent(AppEventsLogger.AppEvents.AddedToCart, cartItem);
+  AppEventsLogger.logEvent(AppEventsLogger.AppEvents.AddedToCart, cartItem);
 };
 
 const trackCheckout = (items: GAItem[], coupon: string | undefined) => {
@@ -24,10 +24,10 @@ const trackCheckout = (items: GAItem[], coupon: string | undefined) => {
     num_items: items.length,
     contents: items,
   };
-  // AppEventsLogger.logEvent(
-  //   AppEventsLogger.AppEvents.InitiatedCheckout,
-  //   checkoutItem,
-  // );
+  AppEventsLogger.logEvent(
+    AppEventsLogger.AppEvents.InitiatedCheckout,
+    checkoutItem,
+  );
 };
 
 const trackPurchase = (items: GAItem[], orderTotal: number) => {
@@ -39,7 +39,7 @@ const trackPurchase = (items: GAItem[], orderTotal: number) => {
     num_items: items.length,
     contents: items,
   };
-  // AppEventsLogger.logPurchase(orderTotal, CURRENCY, purchaseItem);
+  AppEventsLogger.logPurchase(orderTotal, CURRENCY, purchaseItem);
 };
 
 export const FBTrackingService = {

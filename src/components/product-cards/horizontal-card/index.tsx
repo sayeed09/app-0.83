@@ -85,7 +85,12 @@ const HorizontalCard = ({
       ],
     });
     const eventName = 'atc1_app';
-    GATrackingService.trackCustomEvent(eventName, { items: [{ item_id: cartItem.productId, item_variant: cartItem.title, price: (Number(cartItem?.price) ?? 0) / 100, quantity: 1 }] });
+    GATrackingService.trackCustomEvent(eventName, {
+      item_id: cartItem.productId,
+      item_variant: cartItem.title,
+      price: (Number(cartItem?.price) ?? 0) / 100,
+      quantity: 1,
+    });
     setUpgradeCartItem(cartItem);
     setUpgradeCartPopup(true);
   }

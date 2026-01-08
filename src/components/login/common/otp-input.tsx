@@ -108,7 +108,6 @@ const OtpVerification = ({ showSuccessMessage, navigation }: IProps) => {
   };
 
   const onSubmitButtonPress = async () => {
-    debugger;
     if (isLoading) return;
     const otp = otpArray.join('');
     const otpRequestPayload = {

@@ -168,6 +168,7 @@ dependencies {
     implementation("androidx.core:core:1.9.0")
     implementation("androidx.appcompat:appcompat:1.4.2")
     implementation("androidx.lifecycle:lifecycle-process:2.7.0")
+    implementation 'com.facebook.android:facebook-android-sdk:latest.release'
 
     // Exclude androidsvg JAR to prevent duplicate with androidsvg-aar
     configurations.all {

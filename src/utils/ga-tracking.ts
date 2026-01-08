@@ -14,6 +14,7 @@ const trackViewProduct = ({ item_id, item_name, price, quantity }: GAItem) => {
     items: [{ item_id, item_name, price, quantity }],
     value: price,
   };
+
   analytics().logViewItem(cartItem);
 };
 
@@ -23,6 +24,8 @@ const trackAddToCart = ({ item_id, item_name, price, quantity }: GAItem) => {
     items: [{ item_id, item_name, price, quantity }],
     value: price,
   };
+  const and = analytics();
+
   analytics().logAddToCart(cartItem);
 };
 

@@ -1,21 +1,20 @@
+import { addProduct, removeItem, setIsCartUpgraded, setUpgradeSnackbar } from 'actions/cart';
+import Loader from 'components/elements/loader/loader';
+import { useCartDispatch } from "context/cart/CartContext";
+import useCart from "hooks/cart";
 import React, { useEffect, useState } from "react";
 import {
-  View,
-  Text,
   Image,
-  TouchableOpacity,
   StyleSheet,
-  ActivityIndicator,
+  Text,
+  TouchableOpacity,
+  View
 } from "react-native";
+import { getUpgradedProductId, setUpgradedProductId } from "services/cart";
 import { fetchProducts, fetchVariantAdditionalDetail } from "services/product";
 import { PHMProductId, PHWProductId } from "utils/constants";
 import { formatCurrencyWithSymbol } from "utils/currency-utils";
-import { addProduct, removeItem, setIsCartUpgraded, setUpgradeSnackbar } from 'actions/cart';
-import { getUpgradedProductId, setUpgradedProductId } from "services/cart";
-import { useCartDispatch, useCartState } from "context/cart/CartContext";
 import { GATrackingService } from "utils/ga-tracking";
-import Loader from 'components/elements/loader/loader';
-import useCart from "hooks/cart";
 
 const UpgradeModal = ({ filteredVariants, index, setUpgradeCartItem, upgradeCartItem, setUpgradedCartPopup }) => {
   const recommendedVariant = filteredVariants && filteredVariants.length > 0 ? filteredVariants.filter(variant => variant.isRecommended)[0] : null;
@@ -106,14 +105,11 @@ const UpgradeModal = ({ filteredVariants, index, setUpgradeCartItem, upgradeCart
               style={selectedPack && selectedPack.id === item.id ? styles.activePackCard : styles.inactivePackCard}
               onPress={() => {
                 const eventName = 'upgrade_cart_pack_selected';
+
                 GATrackingService.trackCustomEvent(eventName, {
-                  items: [
-                    {
-                      option: upgradeCartItem.productId,
-                      item_name: upgradeCartItem.title,
-                      item_id: upgradeCartItem.variantId,
-                    },
-                  ],
+                  item_id: upgradeCartItem.variantId,
+                  item_name: upgradeCartItem.title,
+                  option: upgradeCartItem.productId,
                 });
                 setSelectedPack(item);
               }}

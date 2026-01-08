@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react';
 import { addProduct, increaseQuantity, initCart } from 'actions/cart';
 import { useCartDispatch, useCartState } from 'context/cart/CartContext';
 import {
@@ -11,14 +10,15 @@ import {
   Plan,
 } from 'models/product-details/subscription-plan-response';
 import { CartItem, CartState } from 'models/shop/cart';
+import React, { useEffect, useState } from 'react';
 import { trackMoEngageAppEvent } from 'utils/common';
 import { FBTrackingService } from 'utils/fb-tracking';
 import { GATrackingService } from 'utils/ga-tracking';
 
 
-import PlanModal from './subscriptions/plan-modal';
 import FooterV2 from 'components/productv2/footer/footer';
 import { Product } from 'models/product';
+import PlanModal from './subscriptions/plan-modal';
 
 interface Props {
   subscriptionPlanDetails: FetchSubscriptionsModel;
@@ -241,12 +241,12 @@ const ProductFooter = (props: Props) => {
       getAvailableVariants().length === 0
     ) {
     } else {
-      const productData = {
-        id: productDetails.id,
-        title: productDetails.title,
-      };
       const eventName = 'atc1_app';
-      GATrackingService.trackCustomEvent(eventName, { items: productData });
+
+      GATrackingService.trackCustomEvent(eventName, {
+        item_id: productDetails.id,
+        item_name: productDetails.title,
+      });
       trackMoEngageAppEvent({
         event: eventName,
         values: [
