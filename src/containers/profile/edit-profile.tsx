@@ -1,12 +1,10 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Pressable, ScrollView, View } from 'react-native';
 import { CheckBox, Input } from 'react-native-elements';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
-import { NativeStackNavigationProp } from 'react-native-screens/native-stack';
 import Toast from 'react-native-toast-message';
 // import { useQueryClient } from 'react-query';
 // import { getUserDetails } from 'rest/profile-react-query';
-import { AppStackDefinition } from '@routes/definitions';
 import CalendatSvgIcon from 'assets/images/icons/standard-icons/calendar-icon';
 // import ListItem from 'components/elements/lists/item';
 import dayjs from 'dayjs';
@@ -19,15 +17,12 @@ import {
 } from '@components/base/foundation';
 import PrimaryButton from '@components/elements/button/primary-Button';
 import { UserDetails } from '@models/user';
+import { useAuthDispatch } from 'context/auth';
+import { useCheckoutDispatch } from 'context/checkout';
+import { useModalsDispatch } from 'context/modals';
+import useLogin from 'hooks/login';
 import { UserProfileResponseModel } from 'models/auth';
 import { getUserProfileDataService, updateUserProfileService } from 'services/user';
-import { loginSuccessful, setLoginModal } from 'actions/modals';
-import { useModalsDispatch } from 'context/modals';
-import { setAuthenticated, setUser } from 'actions/auth';
-import { useAuthDispatch } from 'context/auth';
-import { setDiscountCode } from 'actions/checkout';
-import { useCheckoutDispatch } from 'context/checkout';
-import useLogin from 'hooks/login';
 // import { client } from 'services/api-client';
 // import { userProfilePath } from 'utils/constants';
 
@@ -49,10 +44,10 @@ const styles = {
 const EditProfile = ({
   navigation,
 }: {
-  navigation: NativeStackNavigationProp<AppStackDefinition>;
+  navigation: any;
 }) => {
   const [autoValidate, setAutoValidate] = useState(false);
-  const [userProfileData,setUserProfileData] = useState<UserProfileResponseModel>();
+  const [userProfileData, setUserProfileData] = useState<UserProfileResponseModel>();
 
   const modalsDispatch = useModalsDispatch();
   const authDispatch = useAuthDispatch();
@@ -65,7 +60,7 @@ const EditProfile = ({
       navigation.goBack();
     }).catch(error => {
       Toast.show({ type: 'error', text1: 'Error, could not update' });
-      if(error?.response?.status === 401){
+      if (error?.response?.status === 401) {
         handleLogout();
         navigation.navigate('ProfileScreen');
       }
@@ -79,7 +74,7 @@ const EditProfile = ({
       })
       .catch((error) => {
         console.log("Error while getting user profile : ", error);
-        if(error?.response?.status === 401){
+        if (error?.response?.status === 401) {
           handleLogout();
           navigation.navigate('ProfileScreen');
         }

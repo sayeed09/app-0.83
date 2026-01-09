@@ -1,6 +1,4 @@
 import { isIdInCart } from '@containers/shop/common';
-import { RouteProp } from '@react-navigation/native';
-import { AppStackDefinition } from '@routes/definitions';
 import { isEmpty } from 'lodash';
 import React, { useEffect, useState } from 'react';
 import {
@@ -67,7 +65,7 @@ const OrderDetails = ({
   route,
 }: {
   navigation: any;
-  route: RouteProp<AppStackDefinition, 'OrderDetails'>;
+  route: any;
 }) => {
   const { order } = route.params;
   const { handleAddToCart } = useCart();

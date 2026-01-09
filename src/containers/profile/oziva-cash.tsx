@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Pressable, SectionList, View } from 'react-native';
 import { DataTable } from 'react-native-paper';
-import { NativeStackNavigationProp } from 'react-native-screens/native-stack';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 // import { useQuery } from 'react-query';
 // import { RouteProp } from '@react-navigation/native';
-import { AppStackDefinition } from '@routes/definitions';
 import OzivaCashWalletIconComponent from 'assets/images/icons/oziva-cash-icons/oziva-cash-wallet-icon';
 import { AxiosError } from 'axios';
 import dayjs from 'dayjs';
@@ -14,22 +12,22 @@ import { isEmpty } from 'lodash';
 // import {
 //   getTransactions,
 // } from 'rest/profile-react-query';
-import { loginSuccessful, setLoginModal } from '@actions/modals';
+import { setLoginModal } from '@actions/modals';
 import { SecondaryButton } from '@components/base/buttons';
 import { Box, Hr, Text } from '@components/base/foundation';
 import ListItem from '@components/elements/lists/item';
 import Loader from '@components/elements/loader/loader';
 import { FullPageErrorFallback } from '@components/shared/error';
 import { useModalsDispatch, useModalsState } from '@context/modals';
+import useLogin from 'hooks/login';
 import { UserProfileResponseModel } from 'models/auth';
 import { getOZivaCashService, getUserProfileDataService } from 'services/user';
-import useLogin from 'hooks/login';
 
 const OZivaCash = ({
   navigation,
 }: // route,
   {
-    navigation: NativeStackNavigationProp<AppStackDefinition>;
+    navigation: any
     // route: RouteProp<AppStackDefinition, 'OZivaCash'>;
   }) => {
   const [pageNumber, setPageNumber] = useState(1);
