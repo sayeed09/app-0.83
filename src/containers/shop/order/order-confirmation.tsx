@@ -1,14 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import {
-  BackHandler,
-  SafeAreaView,
-  ScrollView,
-  Text,
-  View,
-} from 'react-native';
-import InAppReview from 'react-native-in-app-review';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import crashlytics from '@react-native-firebase/crashlytics';
 import { clearCart } from 'actions/cart';
 import { setIsPaymentProcessing } from 'actions/checkout';
 import AddressCard from 'components/address/address-card';
@@ -19,20 +11,28 @@ import Loader from 'components/elements/loader/loader';
 import OrderConfirmationPriceDetails from 'components/order/order-confirmation-price-details';
 import OrderConfirmationPopupWidget from 'components/order/order-confirmation-promo-widget';
 import OrderDeliveryDuration from 'components/order/order-delivery-duration';
-import { gray7E, green } from 'components/styles/colors';
-import { useCartDispatch, useCartState } from 'context/cart/CartContext';
+import { gray7E } from 'components/styles/colors';
+import { useCartDispatch } from 'context/cart/CartContext';
 import { useCheckoutDispatch, useCheckoutState } from 'context/checkout';
 import { useNotificationState } from 'context/notifications';
 import useCart from 'hooks/cart';
+import React, { useEffect, useState } from 'react';
+import {
+  BackHandler,
+  SafeAreaView,
+  ScrollView,
+  Text,
+  View,
+} from 'react-native';
+import InAppReview from 'react-native-in-app-review';
 import { getVariantIds, trackMoEngageAppEvent } from 'utils/common';
 import { convertToRupees } from 'utils/currency-utils';
 import { FBTrackingService } from 'utils/fb-tracking';
 import { GATrackingService } from 'utils/ga-tracking';
-import crashlytics from '@react-native-firebase/crashlytics';
 
-import { CustomText } from '../../../../AndroidFontFix';
-import { fetchCheckoutByIdService } from 'services/checkout';
 import useLogin from 'hooks/login';
+import { fetchCheckoutByIdService } from 'services/checkout';
+import { CustomText } from '../../../../AndroidFontFix';
 
 const OrderConfirmation = ({ navigation }): React.ReactElement => {
   const cartDispatch = useCartDispatch();
@@ -218,7 +218,7 @@ const OrderConfirmation = ({ navigation }): React.ReactElement => {
     fetchCheckout();
 
     const backAction = () => {
-      navigation.navigate('Home');
+      navigation.navigate('index');
       return true;
     };
 

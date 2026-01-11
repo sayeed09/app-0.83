@@ -1,26 +1,26 @@
-import React, { useEffect, useState } from 'react';
-import Toast from 'react-native-toast-message';
 import { useCheckoutDispatch, useCheckoutState } from '@context/checkout';
 import { createCheckoutAction, setDiscountCode } from 'actions/checkout';
 import { useAuthDispatch, useAuthState } from 'context/auth';
+import React, { useEffect, useState } from 'react';
+import Toast from 'react-native-toast-message';
 
-import { useCartDispatch, useCartState } from '@context/cart/CartContext';
-import FooterBar from './footer-bar';
+import { useCartState } from '@context/cart/CartContext';
 import crashlytics from '@react-native-firebase/crashlytics';
-import useLogin from 'hooks/login';
-import { fetchAddressSaveProgress } from 'services/login';
-import { getUser } from 'services/auth';
+import { setRedirectToCheckout } from 'actions/auth';
 import { setLoginModal } from 'actions/modals';
 import { useModalsDispatch } from 'context/modals';
-import { CheckoutCartItem, CreateCheckoutPayload, ISubscriptionObject } from 'rest/checkout/mutations/create-checkout';
-import { getVariantIds, trackMoEngageAppEvent } from 'utils/common';
 import { useNotificationState } from 'context/notifications';
-import { GATrackingService } from 'utils/ga-tracking';
-import { FBTrackingService } from 'utils/fb-tracking';
+import useLogin from 'hooks/login';
 import { CartItem } from 'models/shop/cart';
+import { CheckoutCartItem, CreateCheckoutPayload, ISubscriptionObject } from 'rest/checkout/mutations/create-checkout';
+import { getUser } from 'services/auth';
 import { cartService } from 'services/cart';
 import { createUserCheckoutService } from 'services/checkout';
-import { setRedirectToCheckout } from 'actions/auth';
+import { fetchAddressSaveProgress } from 'services/login';
+import { getVariantIds, trackMoEngageAppEvent } from 'utils/common';
+import { FBTrackingService } from 'utils/fb-tracking';
+import { GATrackingService } from 'utils/ga-tracking';
+import FooterBar from './footer-bar';
 
 
 
@@ -121,7 +121,7 @@ const CartBottomBar = ({ navigation, userAddressFetched }): React.ReactElement =
             bottomOffset: 70,
             type: 'success',
           });
-          navigation ? navigation.navigate('Home') : null;
+          navigation ? navigation.navigate('index') : null;
           return;
         }
         checkoutId = checkoutData.data.checkout_id;

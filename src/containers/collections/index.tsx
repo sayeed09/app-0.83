@@ -6,8 +6,9 @@ import BackIcon from 'components/styled/header/back-icon';
 import HeaderRight from 'components/styled/header/header-right';
 import SliderSkeleton from 'containers/shop/products-slider-skeleton';
 import { useShopDispatch, useShopState } from 'context/shop';
+import { useLocalSearchParams } from 'expo-router';
 import {
-    CollectionByHandleResponse
+  CollectionByHandleResponse
 } from 'models/collection';
 import React, { useEffect, useState } from 'react';
 import { Text, View } from 'react-native';
@@ -22,8 +23,8 @@ const Collections = ({ navigation, route }) => {
   const [isLoading, setIsLoading] = useState(true);
   const { snackBarVisible } = useShopState();
   const shopDispatch = useShopDispatch();
-  const getHandleByNavigation = route?.params?.handle;
-  const banner = route?.params?.banner;
+  const { handle, banner: getHandleByNavigation } = useLocalSearchParams<any>();
+
   useEffect(() => {
     if (getHandleByNavigation) {
       fetchCollectionByHandle(getHandleByNavigation);

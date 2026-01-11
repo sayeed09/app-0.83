@@ -1,6 +1,3 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Text, TextInput, TouchableNativeFeedback, View } from 'react-native';
-import RazorpayCheckout from 'react-native-customui';
 import {
   setIsPaymentProcessing,
   setPaymentError,
@@ -11,29 +8,28 @@ import { BaseView } from 'components/base/view';
 import PrimaryButton from 'components/elements/button/primary-Button';
 import WhiteCard from 'components/elements/card/white-card';
 import ErrorText from 'components/form/validation-error-text';
-import { Color, grayb3, primaryOrange } from 'components/styles/colors';
+import { Color, grayb3 } from 'components/styles/colors';
 import { useCartState } from 'context/cart/CartContext';
 import { useCheckoutDispatch, useCheckoutState } from 'context/checkout';
 import { Formik } from 'formik';
 import { PaymentMethodType } from 'models/payment';
+import React, { useEffect, useRef, useState } from 'react';
+import { Text, TextInput, TouchableNativeFeedback, View } from 'react-native';
+import RazorpayCheckout from 'react-native-customui';
 import { createRazorpayOrderService } from 'services/checkout';
 import { formStyles } from 'styles/form';
 import { RAZORPAY_LIVE_KEY, width } from 'utils/constants';
-import {
-  convertToRupees,
-  formatCurrencyWithSymbol,
-} from 'utils/currency-utils';
 import * as Yup from 'yup';
 
+import crashlytics from '@react-native-firebase/crashlytics';
+import { ShimmerButtonWrapper } from 'containers/shop/cart/cart-list/shimmer-effect';
+import { useModalsDispatch } from 'context/modals';
+import { useNotificationState } from 'context/notifications';
+import { router } from 'expo-router';
+import useLogin from 'hooks/login';
+import { commonStyles } from 'styles/common';
 import { trackContinueShopping } from './comman';
 import PaymentTitle from './payment-title';
-import { useNotificationState } from 'context/notifications';
-import { commonStyles } from 'styles/common';
-import crashlytics from '@react-native-firebase/crashlytics';
-import { setLoginModal } from 'actions/modals';
-import { useModalsDispatch } from 'context/modals';
-import useLogin from 'hooks/login';
-import { ShimmerButtonWrapper } from 'containers/shop/cart/cart-list/shimmer-effect';
 import Policies from './policies';
 
 interface Props {
@@ -144,15 +140,21 @@ const CardPaymentMethodWhiteCard = ({
           cvv: cardPayload.cvv,
         },
       };
-     
+
       crashlytics().log(`Payment method options : ${paymentMethod}`);
 
       checkoutDispatch(setIsPaymentProcessing(true));
 
       RazorpayCheckout.open(options)
         .then(async data => {
-          navigation.navigate('OrderInProgressScreen', {
-            paymentId: data.razorpay_payment_id,
+          // navigation.navigate('OrderInProgressScreen', {
+          //   paymentId: data.razorpay_payment_id,
+          // });
+          router.push({
+            pathname: '/OrderInProgressScreen',
+            params: {
+              paymentId: data.razorpay_payment_id,
+            },
           });
         })
         .catch(error => {
@@ -349,7 +351,7 @@ const CardPaymentMethodWhiteCard = ({
                         <PrimaryButton
                           title={`PROCEED`}
                           accentColor={'#FF6F00'}
-                          style={{paddingHorizontal: 0}}
+                          style={{ paddingHorizontal: 0 }}
                           disabled={!isValid}
                           disabledColor={Color.PAYMENT_DISABLED}
                         />

@@ -10,10 +10,10 @@ import ListItem from '@components/elements/lists/item';
 import { gray7E } from '@components/styles/colors';
 import { useCheckoutDispatch } from '@context/checkout';
 import { UserAddress } from '@models/shop/address';
-import { CustomText } from '../../../AndroidFontFix';
-import { commonStyles } from 'styles/common';
-import SvgRenderer from 'react-native-svg-renderer';
 import DeleteIcon from 'assets/images/icons/delete';
+import { router } from 'expo-router';
+import { commonStyles } from 'styles/common';
+import { CustomText } from '../../../AndroidFontFix';
 
 interface Props {
   address: UserAddress;
@@ -104,7 +104,7 @@ const AddressCard = ({
         </ListItem>
 
       </BaseView>
-      <View style={{width: '85%'}}>
+      <View style={{ width: '85%' }}>
         <Text style={{ color: gray7E }}>
           {address?.address1}, {address?.address2}, {'\n'}
           {address?.city} - {address?.zip} {address?.country}
@@ -168,9 +168,16 @@ const AddressCard = ({
         <SecondaryButton
           title="CHANGE OR ADD ADDRESS"
           onAction={() => {
-            navigation.navigate('Addresses', {
-              isSubscription: isSubscription,
-              screenName: 'CartScreen'
+            // navigation.navigate('Addresses', {
+            //   isSubscription: isSubscription,
+            //   screenName: 'CartScreen'
+            // });
+            router.push({
+              pathname: '/Addresses',
+              params: {
+                isSubscription: isSubscription,
+                screenName: 'CartScreen'
+              },
             });
             setErrorMessage && setErrorMessage('');
           }}

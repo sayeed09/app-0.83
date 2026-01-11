@@ -1,5 +1,6 @@
 import FastImage from '@d11/react-native-fast-image';
 import WhiteCard from 'components/elements/card/white-card';
+import { router } from 'expo-router';
 import * as React from 'react';
 import { Pressable, ScrollView, Text, View } from 'react-native';
 import { commonStyles } from 'styles/common';
@@ -26,7 +27,7 @@ const HomeCleanProtein = ({ cleanProteinList, navigation }) => {
               commonStyles.pb8,
             ]}
           >
-            Live #HarTarahSeBetter with clean protein for all your needs! 
+            Live #HarTarahSeBetter with clean protein for all your needs!
             Manage weight, tone up, build lean muscle & improve stamina.
           </Text>
         </View>
@@ -41,9 +42,16 @@ const HomeCleanProtein = ({ cleanProteinList, navigation }) => {
                 <Pressable
                   onPress={() => {
                     if (link.split('collections/').length > 1) {
-                      navigation.navigate('Collection', {
-                        handle: link.split('collections/')[1],
-                        banner,
+                      // navigation.navigate('Collection', {
+                      //   handle: link.split('collections/')[1],
+                      //   banner,
+                      // });
+                      router.push({
+                        pathname: '/Collection',
+                        params: {
+                          handle: link.split('collections/')[1],
+                          banner,
+                        },
                       });
                     }
                   }}

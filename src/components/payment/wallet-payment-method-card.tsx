@@ -1,6 +1,3 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Pressable, Text, TouchableNativeFeedback, View } from 'react-native';
-import RazorpayCheckout from 'react-native-customui';
 import {
   setIsPaymentProcessing,
   setPaymentError,
@@ -9,6 +6,9 @@ import {
 import AirtelMoneyIconComponent from 'assets/images/icons/wallet-logos/airtel-money-icon';
 import AmazonPayIconComponent from 'assets/images/icons/wallet-logos/amazon-pay-icon';
 import FreechargeIconComponent from 'assets/images/icons/wallet-logos/freecharge-icon';
+import React, { useEffect, useRef, useState } from 'react';
+import { Pressable, Text, TouchableNativeFeedback, View } from 'react-native';
+import RazorpayCheckout from 'react-native-customui';
 // import PayZappIconComponent from 'assets/images/icons/wallet-logos/hdfc-icon';
 import MobiKwikIconComponent from 'assets/images/icons/wallet-logos/mobikwik-icon';
 import PhonePeIconComponent from 'assets/images/icons/wallet-logos/phonepe-icon';
@@ -22,14 +22,15 @@ import { PaymentMethodType } from 'models/payment';
 import { createRazorpayOrderService } from 'services/checkout';
 import { RAZORPAY_LIVE_KEY } from 'utils/constants';
 
-import { trackContinueShopping } from './comman';
-import PaymentTitle from './payment-title';
-import { useNotificationState } from 'context/notifications';
-import { commonStyles } from 'styles/common';
 import crashlytics from '@react-native-firebase/crashlytics';
-import useLogin from 'hooks/login';
 import { Color } from 'components/styles/colors';
 import { ShimmerButtonWrapper } from 'containers/shop/cart/cart-list/shimmer-effect';
+import { useNotificationState } from 'context/notifications';
+import { router } from 'expo-router';
+import useLogin from 'hooks/login';
+import { commonStyles } from 'styles/common';
+import { trackContinueShopping } from './comman';
+import PaymentTitle from './payment-title';
 import Policies from './policies';
 
 interface Props {
@@ -156,8 +157,14 @@ const WalletPaymentMethodWhiteCard = ({
       RazorpayCheckout.open(options)
         .then(async data => {
           checkoutDispatch(setIsPaymentProcessing(true));
-          navigation.navigate('OrderInProgressScreen', {
-            paymentId: data.razorpay_payment_id,
+          // navigation.navigate('OrderInProgressScreen', {
+          //   paymentId: data.razorpay_payment_id,
+          // });
+          router.push({
+            pathname: '/OrderInProgressScreen',
+            params: {
+              paymentId: data.razorpay_payment_id,
+            },
           });
         })
         .catch(error => {

@@ -53,7 +53,7 @@ export default function TabLayout() {
 
       />
       <Tabs.Screen
-        name="concerns"
+        name="Concerns"
         options={({ navigation }) => ({
           tabBarIcon: ({ focused }) =>
             focused ? <BagFilledIconComponent /> : <BagLineIconComponent />,

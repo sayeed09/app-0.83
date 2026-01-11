@@ -5,6 +5,7 @@ import PrimaryButton from 'components/elements/button/primary-Button';
 import WhiteCard from 'components/elements/card/white-card';
 import ErrorText from 'components/form/validation-error-text';
 import { ctaGreen, darkGreen, grayb3, grayd9 } from 'components/styles/colors';
+import { useLocalSearchParams } from 'expo-router';
 import { Formik } from 'formik';
 import React, { useState } from 'react';
 import { SafeAreaView, StyleSheet, TextInput, View } from 'react-native';
@@ -41,7 +42,12 @@ const styles = StyleSheet.create({
 });
 
 const WriteAReview = ({ route, navigation }): React.ReactElement => {
-  const { productId, productTitle, productImageUrl } = route.params;
+  const {
+    productId,
+    productTitle,
+    productImageUrl,
+  } = useLocalSearchParams<any>();
+
   const [rating, setRating] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
 

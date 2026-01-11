@@ -1,6 +1,3 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { ActivityIndicator, Linking, Platform, Pressable, StyleSheet, Text, TextInput, TouchableNativeFeedback, View } from 'react-native';
-import RazorpayCheckout from 'react-native-customui';
 import {
   setIsPaymentProcessing,
   setPaymentError,
@@ -10,25 +7,28 @@ import { BaseView } from 'components/base/view';
 import PrimaryButton from 'components/elements/button/primary-Button';
 import WhiteCard from 'components/elements/card/white-card';
 import ErrorText from 'components/form/validation-error-text';
-import { Color, grayb3, primaryOrange } from 'components/styles/colors';
+import { Color, grayb3 } from 'components/styles/colors';
 import { useCartState } from 'context/cart/CartContext';
 import { useCheckoutDispatch, useCheckoutState } from 'context/checkout';
 import { Formik } from 'formik';
 import { IValidateUPIId, PaymentMethodType } from 'models/payment';
+import React, { useEffect, useRef, useState } from 'react';
+import { ActivityIndicator, Platform, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
+import RazorpayCheckout from 'react-native-customui';
 import { createRazorpayOrderService, validateUPIId } from 'services/checkout';
 import { RAZORPAY_LIVE_KEY, upiIntentApps } from 'utils/constants';
 import * as Yup from 'yup';
 
-import { trackContinueShopping } from './comman';
-import PaymentTitle from './payment-title';
-import { useNotificationState } from 'context/notifications';
-import { commonStyles } from 'styles/common';
 import crashlytics from '@react-native-firebase/crashlytics';
+import { ShimmerButtonWrapper } from 'containers/shop/cart/cart-list/shimmer-effect';
+import { useNotificationState } from 'context/notifications';
+import { router } from 'expo-router';
 import useLogin from 'hooks/login';
 import { Image } from 'react-native';
 import { SvgUri } from 'react-native-svg';
+import { trackContinueShopping } from './comman';
 import { OtherAvailableUPIApps } from './others-available-upi-apps-modal';
-import { ShimmerButtonWrapper } from 'containers/shop/cart/cart-list/shimmer-effect';
+import PaymentTitle from './payment-title';
 import Policies from './policies';
 
 interface Props {
@@ -259,10 +259,15 @@ const UPIPaymentMethodWhiteCard = ({
       checkoutDispatch(setPaymentMethod(paymentMethod));
       RazorpayCheckout.open(options)
         .then(async data => {
-          navigation.navigate('OrderInProgressScreen', {
-            paymentId: data.razorpay_payment_id,
+          // navigation.navigate('OrderInProgressScreen', {
+          //   paymentId: data.razorpay_payment_id,
+          // });
+          router.push({
+            pathname: '/OrderInProgressScreen',
+            params: {
+              paymentId: data.razorpay_payment_id,
+            },
           });
-
         })
         .catch(error => {
           console.log(`Error: ${error.code} | ${error.description}`);
@@ -476,7 +481,7 @@ const UPIPaymentMethodWhiteCard = ({
                               <PrimaryButton
                                 title={'PROCEED'}
                                 accentColor={"#FF6F00"}
-                                style={{paddingHorizontal: 0}}
+                                style={{ paddingHorizontal: 0 }}
                                 disabled={!isValid || !verifiedUPIId}
                                 disabledColor={Color.PAYMENT_DISABLED}
                               />

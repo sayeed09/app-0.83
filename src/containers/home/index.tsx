@@ -33,6 +33,7 @@ import { width } from '@utils/constants';
 import { Text } from 'react-native';
 
 import crashlytics from '@react-native-firebase/crashlytics';
+import { router } from 'expo-router';
 import { filterBannerImagesHomeService } from 'services/home';
 import CategoriesThumbnails from './category-thumbnails';
 import Certificate from './certificate';
@@ -67,7 +68,14 @@ const HomePage = ({ navigation }) => {
       if (url.includes('http')) {
         // Linking.openURL(url);
         crashlytics().log(`Opening URL in webview : ${JSON.stringify({ url, title })}`);
-        navigation.navigate('BannerDeepLinksView', { uri: url, title });
+        // navigation.navigate('BannerDeepLinksView', { uri: url, title });
+        router.push({
+          pathname: '/BannerDeepLinksView',
+          params: {
+            uri: url,
+            title: title,
+          },
+        });
       } else {
         const str = url.split('//');
         linkTo(`/${str[str.length - 1]}`);

@@ -14,6 +14,7 @@ import { gray7E } from '@components/styles/colors';
 import { useNotificationState } from '@context/notifications';
 import { width } from '@utils/constants';
 import { BANNER_ONE } from '@utils/images';
+import { router } from 'expo-router';
 
 const Notifications = ({ navigation }) => {
   const { recentNotifications } = useNotificationState();
@@ -41,9 +42,16 @@ const Notifications = ({ navigation }) => {
                 if (res?.url) {
                   if (res?.url.includes('http')) {
                     // Linking.openURL(url);
-                    navigation.navigate('BannerDeepLinksView', {
-                      uri: res?.url,
-                      title: res?.title || '',
+                    // navigation.navigate('BannerDeepLinksView', {
+                    //   uri: res?.url,
+                    //   title: res?.title || '',
+                    // });
+                    router.push({
+                      pathname: '/BannerDeepLinksView',
+                      params: {
+                        uri: res?.url,
+                        title: res?.title || '',
+                      },
                     });
                   } else {
                     const str = res?.url.split('//');
@@ -92,7 +100,7 @@ const Notifications = ({ navigation }) => {
                       {res?.ButtonTitle && (
                         <SecondaryButton
                           title={res?.ButtonTitle}
-                          onAction={() => {}}
+                          onAction={() => { }}
                           textColor="#6BBD58"
                           accentColor="transparent"
                           style={{ marginBottom: -100 }}

@@ -37,6 +37,7 @@ import FastImage from '@d11/react-native-fast-image';
 import { parseRatings } from '@utils/common';
 import { BaseView } from 'components/base/view';
 import OZModal from 'components/modal';
+import { router } from 'expo-router';
 import { ICustomerReview, ICustomerReviewResponse } from 'models/product-details/customer-review';
 import { axiosClient } from 'services/axios';
 import { fetchJudgemeReviewsService, reportReviewService } from 'services/judgeme';
@@ -418,11 +419,19 @@ const CustomerReviews = ({
           <View style={[commonStyles.flexColumn]}>
             <SecondaryButton
               onAction={() => {
-                navigation.navigate('WriteAReview', {
-                  productId: product?.id,
-                  productTitle: product.title,
-                  productImageUrl: product.image,
+                router.push({
+                  pathname: '/WriteAReview',
+                  params: {
+                    productId: product?.id,
+                    productTitle: product.title,
+                    productImageUrl: product.image,
+                  },
                 });
+                // navigation.navigate('WriteAReview', {
+                //   productId: product?.id,
+                //   productTitle: product.title,
+                //   productImageUrl: product.image,
+                // });
               }}
               style={
                 (ProductStyles.btn,

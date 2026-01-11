@@ -1,13 +1,13 @@
+import crashlytics from '@react-native-firebase/crashlytics';
 import { setIsPaymentProcessing, setPaymentError } from 'actions/checkout';
-import { BaseView } from 'components/base/view'
 import { useCheckoutDispatch } from 'context/checkout';
-import React, { useEffect } from 'react'
+import { useLocalSearchParams } from 'expo-router';
+import useLogin from 'hooks/login';
+import React, { useEffect } from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
 import { ActivityIndicator } from 'react-native-paper';
 import { postPaymentStatus } from 'services/checkout';
 import { LOGO } from 'utils/images';
-import crashlytics from '@react-native-firebase/crashlytics';
-import useLogin from 'hooks/login';
 
 const styleSheet = StyleSheet.create({
     container: {
@@ -40,7 +40,8 @@ interface IProps {
 const OrderInProgress = ({ navigation, route }: IProps) => {
     const checkoutDispatch = useCheckoutDispatch();
     const { handleLogout } = useLogin();
-    const { paymentId } = route.params;
+    const { paymentId } = useLocalSearchParams<any>();
+
 
     let timeoutId, pollingIntervalId;
     const pollServer = () => {

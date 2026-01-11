@@ -1,10 +1,10 @@
-import React, { useRef, useState } from 'react';
-import { Text, TouchableWithoutFeedback, View } from 'react-native';
-import RazorpayCheckout from 'react-native-customui';
 import { setIsPaymentProcessing, setPaymentMethod } from 'actions/checkout';
 import DebitCardIconComponent from 'assets/images/icons/payment-icons/debit_card_icon';
 import NetbankingIconComponent from 'assets/images/icons/payment-icons/netbanking-icon';
 import WalletIconComponent from 'assets/images/icons/payment-icons/wallet_icon';
+import React, { useRef, useState } from 'react';
+import { Text, TouchableWithoutFeedback, View } from 'react-native';
+import RazorpayCheckout from 'react-native-customui';
 
 import { BaseView } from '@components/base/view';
 import PrimaryButton from '@components/elements/button/primary-Button';
@@ -17,7 +17,7 @@ import {
 } from '@services/checkout';
 import { RAZORPAY_LIVE_KEY, width } from '@utils/constants';
 import { useModalsDispatch } from 'context/modals';
-import { setLoginModal } from 'actions/modals';
+import { router } from 'expo-router';
 import useLogin from 'hooks/login';
 
 interface Props {
@@ -75,8 +75,14 @@ const PaymentMethodWhiteCard = ({
 
       RazorpayCheckout.open(options)
         .then(async data => {
-          navigation.navigate('OrderInProgressScreen', {
-            paymentId: data.razorpay_payment_id,
+          // navigation.navigate('OrderInProgressScreen', {
+          //   paymentId: data.razorpay_payment_id,
+          // });
+          router.push({
+            pathname: '/OrderInProgressScreen',
+            params: {
+              paymentId: data.razorpay_payment_id,
+            },
           });
         })
         .catch(error => {

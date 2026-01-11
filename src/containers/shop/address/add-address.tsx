@@ -1,4 +1,12 @@
 /* eslint-disable @typescript-eslint/naming-convention */
+import OZCheckbox from 'components/base/checkbox/oz-checkbox';
+import { RadioAction, RadioCheck } from 'components/base/checkbox/styled';
+import { BaseView } from 'components/base/view';
+import ErrorText from 'components/form/validation-error-text';
+import OZModal from 'components/modal';
+import { gray7E, grayb3 } from 'components/styles/colors';
+import { Formik } from 'formik';
+import { AddressType, addressTypes, UserAddress } from 'models/shop/address';
 import React, { useEffect, useState } from 'react';
 import {
     Keyboard,
@@ -13,14 +21,6 @@ import {
 import { ScrollView } from 'react-native-gesture-handler';
 import Toast from 'react-native-toast-message';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import OZCheckbox from 'components/base/checkbox/oz-checkbox';
-import { RadioAction, RadioCheck } from 'components/base/checkbox/styled';
-import { BaseView } from 'components/base/view';
-import ErrorText from 'components/form/validation-error-text';
-import OZModal from 'components/modal';
-import { gray7E, grayb3 } from 'components/styles/colors';
-import { Formik } from 'formik';
-import { AddressType, addressTypes, UserAddress } from 'models/shop/address';
 import {
     createUserAddressService,
     fetchCityStateFromPincode,
@@ -35,17 +35,17 @@ import * as Yup from 'yup';
 import PrimaryButton from '@components/elements/button/primary-Button';
 import { useCheckoutDispatch, useCheckoutState } from '@context/checkout';
 import { CustomerAddressPayload } from '@models/shop/checkout';
-import { getProvinceFromPincode } from 'utils/checkout';
 import {
     updateUserMoEngageProfile,
 } from '@utils/common';
 import { setSubscriptionAddress } from 'actions/checkout';
-import { commonStyles } from 'styles/common';
-import { patchAddressService } from 'services/checkout';
-import { loginSuccessful } from 'actions/modals';
 import { useModalsDispatch } from 'context/modals';
+import { useLocalSearchParams } from 'expo-router';
 import useLogin from 'hooks/login';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { patchAddressService } from 'services/checkout';
+import { commonStyles } from 'styles/common';
+import { getProvinceFromPincode } from 'utils/checkout';
 
 const styles = StyleSheet.create({
     container: {
@@ -215,7 +215,9 @@ const AddAddress = ({ navigation, route }): React.ReactElement => {
     const { handleLogout } = useLogin();
     const [errorMessage, setErrorMessage] = useState('');
     const [userAddressList, setUserAddressList] = useState();
-    const { address, isSubscription, screenName } = route?.params || {};
+    const {
+        address, isSubscription, screenName, navigateTo
+    } = useLocalSearchParams<any>();
     const [checkedAddressType, setCheckedAddressType] = useState(
         AddressType[address?.addressType] || AddressType.HOME,
     );
@@ -364,7 +366,7 @@ const AddAddress = ({ navigation, route }): React.ReactElement => {
                                             navigation.navigate('SubscriptionAddressOrderSummary');
                                         } else {
                                             navigation.navigate(
-                                                route?.params?.navigateTo || 'AddressOrderSummaryScreen',
+                                                navigateTo || 'AddressOrderSummaryScreen',
                                             );
                                         }
                                     } catch (error: any) {

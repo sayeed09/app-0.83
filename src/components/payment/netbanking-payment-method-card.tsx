@@ -1,17 +1,3 @@
-import React, { useEffect, useRef, useState } from 'react';
-import {
-  Image,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableNativeFeedback,
-  View,
-  Pressable
-} from 'react-native';
-import RazorpayCheckout from 'react-native-customui';
-import SvgRenderer from 'react-native-svg-renderer';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import crashlytics from '@react-native-firebase/crashlytics';
 import {
   setIsPaymentProcessing,
@@ -30,15 +16,29 @@ import { useCartState } from 'context/cart/CartContext';
 import { useCheckoutDispatch, useCheckoutState } from 'context/checkout';
 import { useNotificationState } from 'context/notifications';
 import { PaymentMethodType } from 'models/payment';
+import React, { useEffect, useRef, useState } from 'react';
+import {
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableNativeFeedback,
+  View
+} from 'react-native';
+import RazorpayCheckout from 'react-native-customui';
+import SvgRenderer from 'react-native-svg-renderer';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { createRazorpayOrderService, getAvailableBanks } from 'services/checkout';
 import { RAZORPAY_LIVE_KEY, width } from 'utils/constants';
 import { defaultBanks } from 'utils/constants/netbanking';
 
+import { ShimmerButtonWrapper } from 'containers/shop/cart/cart-list/shimmer-effect';
+import { router } from 'expo-router';
+import useLogin from 'hooks/login';
+import { commonStyles } from 'styles/common';
 import { trackContinueShopping } from './comman';
 import PaymentTitle from './payment-title';
-import { commonStyles } from 'styles/common';
-import useLogin from 'hooks/login';
-import { ShimmerButtonWrapper } from 'containers/shop/cart/cart-list/shimmer-effect';
 import Policies from './policies';
 
 interface Props {
@@ -186,8 +186,14 @@ const BankPaymentMethodWhiteCard = ({
 
       RazorpayCheckout.open(options)
         .then(async data => {
-          navigation.navigate('OrderInProgressScreen', {
-            paymentId: data.razorpay_payment_id,
+          // navigation.navigate('OrderInProgressScreen', {
+          //   paymentId: data.razorpay_payment_id,
+          // });
+          router.push({
+            pathname: '/OrderInProgressScreen',
+            params: {
+              paymentId: data.razorpay_payment_id,
+            },
           });
         })
         .catch((error: any) => {
@@ -280,11 +286,11 @@ const BankPaymentMethodWhiteCard = ({
                                 borderColor: checked === bank.bankCode
                                   ? darkGreen
                                   : '#f5f5f5',
-                                  backgroundColor:
-                                    checked === bank.bankCode
-                                      ? orderPromoLightGreen
-                                      : 'transparent',
-                                }, styles.paymentButton]}
+                                backgroundColor:
+                                  checked === bank.bankCode
+                                    ? orderPromoLightGreen
+                                    : 'transparent',
+                              }, styles.paymentButton]}
                             >
                               <SvgRenderer
                                 width="50"
@@ -345,7 +351,7 @@ const BankPaymentMethodWhiteCard = ({
                     setBanksList(result);
                   }}
                   value={checked || searchBank}
-                  style={[commonStyles.inputWrapDefault, {paddingHorizontal: 16}]}
+                  style={[commonStyles.inputWrapDefault, { paddingHorizontal: 16 }]}
                   placeholder="VIEW MORE BANKS"
                   keyboardType="default"
                   placeholderTextColor="#000"
@@ -356,9 +362,9 @@ const BankPaymentMethodWhiteCard = ({
                       <Icon name="chevron-down" color="#000" size={30} />
                     </Pressable>
                   ) : (
-                      <Pressable onPress={() => setIsFocused(true)}>
-                        <Icon name="chevron-up" color="#000" size={30} />
-                      </Pressable>
+                    <Pressable onPress={() => setIsFocused(true)}>
+                      <Icon name="chevron-up" color="#000" size={30} />
+                    </Pressable>
                   )}
                 </View>
               </View>
@@ -425,8 +431,8 @@ const BankPaymentMethodWhiteCard = ({
             </View>
             <View style={{ margin: 16 }}>
               <BaseView>
-                <ShimmerButtonWrapper  onAction={() => {
-                  if(checked){
+                <ShimmerButtonWrapper onAction={() => {
+                  if (checked) {
                     setIsFocused(false);
                     launchPaymentProcess();
                   }

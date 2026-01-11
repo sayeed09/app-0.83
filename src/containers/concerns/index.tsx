@@ -4,6 +4,7 @@ import CollectionBubbles from 'components/concern-categories/collection-bubbles'
 import ProductList from 'components/concern-categories/product-list';
 import SubCollectionTags from 'components/concern-categories/subcollection-tags';
 import { useShopDispatch, useShopState } from 'context/shop';
+import { useLocalSearchParams } from 'expo-router';
 import { snakeCase } from 'lodash';
 import {
   Collection,
@@ -32,8 +33,7 @@ const Concerns = ({ route, navigation }) => {
 
   const { snackBarVisible } = useShopState();
   const shopDispatch = useShopDispatch();
-  const collectionHandleByNavigation = route?.params?.collectionHandle;
-  const subCollectionHandleByNavigation = route?.params?.subCollectionHandle;
+  const { collectionHandleByNavigation, subCollectionHandleByNavigation } = useLocalSearchParams<any>();
 
   useEffect(() => {
     fetchCollectionByType();

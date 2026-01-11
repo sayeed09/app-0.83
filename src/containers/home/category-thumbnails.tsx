@@ -1,4 +1,5 @@
 import FastImage from '@d11/react-native-fast-image';
+import { router } from 'expo-router';
 import * as React from 'react';
 import { Pressable, View } from 'react-native';
 
@@ -18,8 +19,14 @@ const CategoriesThumbnails = ({ navigation, spotlightCategoryList }) => (
           <Pressable
             onPress={() => {
               if (category.link.split('collections/').length > 1) {
-                navigation.navigate('Concerns', {
-                  collectionHandle: category.link.split('collections/')[1],
+                // navigation.navigate('Concerns', {
+                //   collectionHandle: category.link.split('collections/')[1],
+                // });
+                router.push({
+                  pathname: '/Concerns',
+                  params: {
+                    collectionHandle: category.link.split('collections/')[1],
+                  },
                 });
               }
             }}

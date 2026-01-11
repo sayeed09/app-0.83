@@ -2,8 +2,7 @@ import FastImage from '@d11/react-native-fast-image';
 import OZModal from 'components/modal';
 import { Article as ArticleModel, ArticleSection } from "models/product-details/productv2";
 import React from "react";
-import { Text, TouchableOpacity, View } from "react-native";
-import { ScrollView } from 'react-native-gesture-handler';
+import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { ArticlesStyle } from 'styles/productv2';
 import Article from './article';
 

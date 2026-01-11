@@ -8,16 +8,14 @@ import {
   SectionListData,
   View,
 } from 'react-native';
-import { NativeStackNavigationProp } from 'react-native-screens/native-stack';
 import Toast from 'react-native-toast-message';
-import { AppStackDefinition } from '@routes/definitions';
 
 import {
   setCustomerDetails,
   setSubscriptionAddress,
   updateAddress,
 } from '@actions/checkout';
-import { loginSuccessful, setLoginModal } from '@actions/modals';
+import { setLoginModal } from '@actions/modals';
 import AddressCard from '@components/address/address-card';
 import { RadioAction, RadioCheck } from '@components/base/checkbox/styled';
 import {
@@ -34,13 +32,14 @@ import { useCheckoutDispatch, useCheckoutState } from '@context/checkout';
 import { useModalsDispatch, useModalsState } from '@context/modals';
 import { UserAddress } from '@models/shop/address';
 import { CustomerAddressPayload } from '@models/shop/checkout';
-import { getProvinceFromPincode } from 'utils/checkout';
-import { commonStyles } from 'styles/common';
+import { AxiosError } from 'axios';
+import Loader from 'components/elements/loader/loader';
+import { router, useLocalSearchParams } from 'expo-router';
+import useLogin from 'hooks/login';
 import { getAllAddressService } from 'services/address';
 import { patchAddressService } from 'services/checkout';
-import Loader from 'components/elements/loader/loader';
-import useLogin from 'hooks/login';
-import { AxiosError } from 'axios';
+import { commonStyles } from 'styles/common';
+import { getProvinceFromPincode } from 'utils/checkout';
 
 const renderHeader = (info: { section: SectionListData<any, any> }) => (
   <Text style={[commonStyles.h3Tag, commonStyles.mb4, commonStyles.fwBold]}>
@@ -62,7 +61,7 @@ const Addresses = ({
   navigation,
   route,
 }: {
-  navigation: NativeStackNavigationProp<AppStackDefinition>;
+  navigation: any;
   route;
 }) => {
   const [sectionAddresses, setSectionAddresses] = useState<SectionItem[]>([]);
@@ -83,7 +82,7 @@ const Addresses = ({
   const { isLoginSuccessful } = useModalsState();
   const { handleLogout } = useLogin();
 
-  const { isView, isSubscription, screenName } = route?.params || {};
+  const { isView, isSubscription, screenName } = useLocalSearchParams<any>();
   const getAddresses = async () => {
     try {
       setLoading(true);
@@ -120,11 +119,20 @@ const Addresses = ({
     }
   };
   const handleEdit = (address) => {
-    navigation.navigate('AddAddressScreen', {
-      navigateTo: 'Addresses',
-      address,
-      isSubscription,
-      screenName: screenName
+    // navigation.navigate('AddAddressScreen', {
+    //   navigateTo: 'Addresses',
+    //   address,
+    //   isSubscription,
+    //   screenName: screenName
+    // });
+    router.push({
+      pathname: '/AddAddressScreen',
+      params: {
+        navigateTo: 'Addresses',
+        isSubscription: isSubscription,
+        screenName: screenName,
+        address
+      },
     });
     setErrorMessage && setErrorMessage('');
   }
@@ -305,12 +313,21 @@ const Addresses = ({
       <ScrollView>
         <WhiteCard noBorderRadius>
           <Pressable
-            onPress={() =>
-              navigation.navigate('AddAddressScreen', {
-                navigateTo: 'Addresses',
-                isSubscription: isSubscription,
-                screenName: screenName
-              })
+            onPress={() => {
+              router.push({
+                pathname: '/AddAddressScreen',
+                params: {
+                  navigateTo: 'Addresses',
+                  isSubscription: isSubscription,
+                  screenName: screenName
+                },
+              });
+            }
+              //     navigation.navigate('AddAddressScreen', {
+              //   navigateTo: 'Addresses',
+              // isSubscription: isSubscription,
+              // screenName: screenName
+
             }
           >
             <View
@@ -352,24 +369,26 @@ const Addresses = ({
           ) : null}
         </View>
       </ScrollView>
-      {!isView && (
-        <BaseView
-          style={{
-            padding: 5,
-            backgroundColor: '#fff',
-          }}
-        >
-          <PrimaryButton
-            accentColor="#F04E23"
-            title="CONFIRM"
-            onAction={() => {
-              confirmAddress();
+      {
+        !isView && (
+          <BaseView
+            style={{
+              padding: 5,
+              backgroundColor: '#fff',
             }}
-            loading={isSubmitting}
-          />
-        </BaseView>
-      )}
-    </SafeAreaView>
+          >
+            <PrimaryButton
+              accentColor="#F04E23"
+              title="CONFIRM"
+              onAction={() => {
+                confirmAddress();
+              }}
+              loading={isSubmitting}
+            />
+          </BaseView>
+        )
+      }
+    </SafeAreaView >
   );
 };
 
